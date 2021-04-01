@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+archivesBaseName = "user-provider-client"
+
+configurations {
+//    compile.exclude module: 'spring-boot-starter-tomcat'
+//    compile.exclude module: 'slf4j-log4j12'
+}
+
+jar.enabled=true
+bootJar.enabled=false
+
+dependencies {
+    compile ("org.springframework.cloud:spring-cloud-starter-openfeign")
+//    implementation ("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+//    implementation ("com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway")
+//    implementation ("com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel")
+}

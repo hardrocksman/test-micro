@@ -1,0 +1,47 @@
+#logging:
+#  level:
+#    root: DEBUG
+
+spring:
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: ds0
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://10.60.46.190:3306/test_sharding?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+        auto-commit: true
+        minimum-idle: 10
+        maximum-pool-size: 30
+        initialPoolSize: 5
+        minPoolSize: 5
+        maxPoolSize: 50
+        idle-timeout: 600000
+        connection-timeout: 60000
+        max-lifetime: 1800000
+        validation-timeout: 3000
+    sharding:
+      tables:
+        T_SE_PAYMENTS_HF:
+          actual-data-nodes: ds0.T_SE_PAYMENTS_HF_2021_1,ds0.T_SE_PAYMENTS_HF_2021_2,ds0.T_SE_PAYMENTS_HF_2021_3
+          table-strategy:
+            standard:
+              sharding-column: urid
+              precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayPreciseShardingAlgorithm
+        t_se_paymentdetail_hf:
+          actual-data-nodes: ds0.t_se_paymentdetail_hf_2021_$->{1..3}
+          table-strategy:
+            standard:
+              sharding-column: paymentid
+              precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayPreciseShardingAlgorithm
+      binding-tables: t_se_payments_hf,t_se_paymentdetail_hf
+      broadcast-tables: T_SE_MERCHANT_HF
+      default-data-source-name: ds0
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml

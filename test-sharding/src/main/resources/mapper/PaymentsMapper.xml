@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.micro.sharding.dao.PaymentDao">
+  <resultMap id="BaseResultMap" type="com.test.micro.sharding.entity.Payment">
+    <id column="URID" jdbcType="VARCHAR" property="urid" />
+    <result column="ORGID" jdbcType="VARCHAR" property="orgid" />
+    <result column="NOTECODE" jdbcType="VARCHAR" property="notecode" />
+    <result column="APPLYORGID" jdbcType="VARCHAR" property="applyorgid" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="PAYDATE" jdbcType="TIMESTAMP" property="paydate" />
+    <result column="PAYTYPEID" jdbcType="VARCHAR" property="paytypeid" />
+    <result column="SETTLEMENTMODEID" jdbcType="VARCHAR" property="settlementmodeid" />
+    <result column="DEALTYPE" jdbcType="VARCHAR" property="dealtype" />
+    <result column="DIRECTPAYWAY" jdbcType="VARCHAR" property="directpayway" />
+    <result column="DIRECTCHANNELCODE" jdbcType="VARCHAR" property="directchannelcode" />
+    <result column="DIRECTCHANNELCMDCODE" jdbcType="VARCHAR" property="directchannelcmdcode" />
+    <result column="DIRECTINTERBANKCODE" jdbcType="VARCHAR" property="directinterbankcode" />
+    <result column="ABSTRACTS" jdbcType="VARCHAR" property="abstracts" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="OURORGID" jdbcType="VARCHAR" property="ourorgid" />
+    <result column="OURBANKID" jdbcType="VARCHAR" property="ourbankid" />
+    <result column="OURBANKLOCATIONS" jdbcType="VARCHAR" property="ourbanklocations" />
+    <result column="OURBANKACCOUNTID" jdbcType="VARCHAR" property="ourbankaccountid" />
+    <result column="OURBANKACCOUNTNUMBER" jdbcType="VARCHAR" property="ourbankaccountnumber" />
+    <result column="OURBANKACCOUNTNAME" jdbcType="VARCHAR" property="ourbankaccountname" />
+    <result column="OURBANKAREAID" jdbcType="VARCHAR" property="ourbankareaid" />
+    <result column="OURBANKAREACODE" jdbcType="VARCHAR" property="ourbankareacode" />
+    <result column="OURBANKAREANAME" jdbcType="VARCHAR" property="ourbankareaname" />
+    <result column="OURCOUNTRYCODE" jdbcType="VARCHAR" property="ourcountrycode" />
+    <result column="OURCURRENCYID" jdbcType="VARCHAR" property="ourcurrencyid" />
+    <result column="OURDIRECTCURCODE" jdbcType="VARCHAR" property="ourdirectcurcode" />
+    <result column="OURAMOUNT" jdbcType="FLOAT" property="ouramount" />
+    <result column="OUREXCHANGERATE" jdbcType="FLOAT" property="ourexchangerate" />
+    <result column="OURLOCALCURRENCYAMOUNT" jdbcType="FLOAT" property="ourlocalcurrencyamount" />
+    <result column="OPPOBJECTTYPE" jdbcType="VARCHAR" property="oppobjecttype" />
+    <result column="OPPORGID" jdbcType="VARCHAR" property="opporgid" />
+    <result column="OPPCODE" jdbcType="VARCHAR" property="oppcode" />
+    <result column="OPPNAME" jdbcType="VARCHAR" property="oppname" />
+    <result column="OPPCOUNTERPARTYCATEGORYID" jdbcType="VARCHAR" property="oppcounterpartycategoryid" />
+    <result column="OPPCOUNTERPARTYID" jdbcType="VARCHAR" property="oppcounterpartyid" />
+    <result column="OPPBANKID" jdbcType="VARCHAR" property="oppbankid" />
+    <result column="OPPBANKLOCATIONID" jdbcType="VARCHAR" property="oppbanklocationid" />
+    <result column="OPPBANKLOCATIONS" jdbcType="VARCHAR" property="oppbanklocations" />
+    <result column="OPPBANKACCOUNTID" jdbcType="VARCHAR" property="oppbankaccountid" />
+    <result column="OPPBANKACCOUNTNUMBER" jdbcType="VARCHAR" property="oppbankaccountnumber" />
+    <result column="OPPBANKACCOUNTNAME" jdbcType="VARCHAR" property="oppbankaccountname" />
+    <result column="OPPBANKAREAID" jdbcType="VARCHAR" property="oppbankareaid" />
+    <result column="OPPBANKAREACODE" jdbcType="VARCHAR" property="oppbankareacode" />
+    <result column="OPPBANKAREANAME" jdbcType="VARCHAR" property="oppbankareaname" />
+    <result column="OPPCOUNTRYCODE" jdbcType="VARCHAR" property="oppcountrycode" />
+    <result column="OPPCURRENCYID" jdbcType="VARCHAR" property="oppcurrencyid" />
+    <result column="OPPDIRECTCURCODE" jdbcType="VARCHAR" property="oppdirectcurcode" />
+    <result column="OPPAMOUNT" jdbcType="FLOAT" property="oppamount" />
+    <result column="OPPEXCHANGERATE" jdbcType="FLOAT" property="oppexchangerate" />
+    <result column="OPPLOCALCURRENCYAMOUNT" jdbcType="FLOAT" property="opplocalcurrencyamount" />
+    <result column="OPPCELLPHONE" jdbcType="VARCHAR" property="oppcellphone" />
+    <result column="OPPPRIVATEFLAG" jdbcType="CHAR" property="oppprivateflag" />
+    <result column="OPPCARDTYPE" jdbcType="VARCHAR" property="oppcardtype" />
+    <result column="OPPCERTTYPE" jdbcType="VARCHAR" property="oppcerttype" />
+    <result column="OPPCERTNUMBER" jdbcType="VARCHAR" property="oppcertnumber" />
+    <result column="OPPEMAILADDRESS" jdbcType="VARCHAR" property="oppemailaddress" />
+    <result column="CNAPS" jdbcType="VARCHAR" property="cnaps" />
+    <result column="ISSAMEREGION" jdbcType="CHAR" property="issameregion" />
+    <result column="ISSAMEBANK" jdbcType="CHAR" property="issamebank" />
+    <result column="ISURGENT" jdbcType="CHAR" property="isurgent" />
+    <result column="PURPOSE" jdbcType="VARCHAR" property="purpose" />
+    <result column="PURPOSEID" jdbcType="VARCHAR" property="purposeid" />
+    <result column="DIRECTCHANNELPURPOSE" jdbcType="VARCHAR" property="directchannelpurpose" />
+    <result column="CHECKCODE" jdbcType="VARCHAR" property="checkcode" />
+    <result column="PAYSTATE" jdbcType="VARCHAR" property="paystate" />
+    <result column="PAYPERSONID" jdbcType="VARCHAR" property="paypersonid" />
+    <result column="PAYSENDDATE" jdbcType="TIMESTAMP" property="paysenddate" />
+    <result column="PAYMADEDATE" jdbcType="TIMESTAMP" property="paymadedate" />
+    <result column="PAYINFOCODE" jdbcType="VARCHAR" property="payinfocode" />
+    <result column="PAYINFO" jdbcType="VARCHAR" property="payinfo" />
+    <result column="PAYREQBATCHNO" jdbcType="VARCHAR" property="payreqbatchno" />
+    <result column="PAYREQBATCHSEQUENCENO" jdbcType="VARCHAR" property="payreqbatchsequenceno" />
+    <result column="PAYREQSERIALNO" jdbcType="VARCHAR" property="payreqserialno" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+    <result column="CANCELSTATE" jdbcType="VARCHAR" property="cancelstate" />
+    <result column="FINVOUCHERCODE" jdbcType="VARCHAR" property="finvouchercode" />
+    <result column="GENRELATEDTRANSSTATE" jdbcType="VARCHAR" property="genrelatedtransstate" />
+    <result column="RECORDSOURCE" jdbcType="VARCHAR" property="recordsource" />
+    <result column="RECORDSOURCEID" jdbcType="VARCHAR" property="recordsourceid" />
+    <result column="SRCOUTSYSTEMID" jdbcType="VARCHAR" property="srcoutsystemid" />
+    <result column="SRCBATCHNO" jdbcType="VARCHAR" property="srcbatchno" />
+    <result column="SRCSERIALNO" jdbcType="VARCHAR" property="srcserialno" />
+    <result column="SRCNOTECODE" jdbcType="VARCHAR" property="srcnotecode" />
+    <result column="SPLITNO" jdbcType="VARCHAR" property="splitno" />
+    <result column="PASSELNO" jdbcType="VARCHAR" property="passelno" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="LASTMODIFIEDBY" jdbcType="VARCHAR" property="lastmodifiedby" />
+    <result column="LASTMODIFIEDON" jdbcType="TIMESTAMP" property="lastmodifiedon" />
+    <result column="ROWVERSION" jdbcType="DECIMAL" property="rowversion" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="ISCHECK" jdbcType="CHAR" property="ischeck" />
+    <result column="CHECKBATCHNO" jdbcType="VARCHAR" property="checkbatchno" />
+    <result column="ISPAYFAILSENDMSG" jdbcType="CHAR" property="ispayfailsendmsg" />
+    <result column="SPLITEDAMOUNT" jdbcType="FLOAT" property="splitedamount" />
+    <result column="SPLITMERGEFLAG" jdbcType="CHAR" property="splitmergeflag" />
+    <result column="BUDGETITEMID" jdbcType="VARCHAR" property="budgetitemid" />
+    <result column="TERMINATESTATE" jdbcType="CHAR" property="terminatestate" />
+    <result column="OURPAIDAMOUNT" jdbcType="FLOAT" property="ourpaidamount" />
+    <result column="COSTS" jdbcType="FLOAT" property="costs" />
+    <result column="REMITTANCEPATH" jdbcType="VARCHAR" property="remittancepath" />
+    <result column="COMPLIANCESTATE" jdbcType="VARCHAR" property="compliancestate" />
+    <result column="COMPLIANCEINFO" jdbcType="VARCHAR" property="complianceinfo" />
+    <result column="TENANTID" jdbcType="DECIMAL" property="tenantid" />
+    <result column="SRCOUTSYSTEMURL" jdbcType="VARCHAR" property="srcoutsystemurl" />
+    <result column="CANCELDATE" jdbcType="TIMESTAMP" property="canceldate" />
+    <result column="BANKSERIALNUMBER" jdbcType="VARCHAR" property="bankserialnumber" />
+    <result column="CAPITALCATEGORYID" jdbcType="VARCHAR" property="capitalcategoryid" />
+    <result column="CASHFLOWITEMID" jdbcType="VARCHAR" property="cashflowitemid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    URID, ORGID, NOTECODE, APPLYORGID, DEPTID, PAYDATE, PAYTYPEID, SETTLEMENTMODEID, 
+    DEALTYPE, DIRECTPAYWAY, DIRECTCHANNELCODE, DIRECTCHANNELCMDCODE, DIRECTINTERBANKCODE, 
+    ABSTRACTS, MEMO, OURORGID, OURBANKID, OURBANKLOCATIONS, OURBANKACCOUNTID, OURBANKACCOUNTNUMBER, 
+    OURBANKACCOUNTNAME, OURBANKAREAID, OURBANKAREACODE, OURBANKAREANAME, OURCOUNTRYCODE, 
+    OURCURRENCYID, OURDIRECTCURCODE, OURAMOUNT, OUREXCHANGERATE, OURLOCALCURRENCYAMOUNT, 
+    OPPOBJECTTYPE, OPPORGID, OPPCODE, OPPNAME, OPPCOUNTERPARTYCATEGORYID, OPPCOUNTERPARTYID, 
+    OPPBANKID, OPPBANKLOCATIONID, OPPBANKLOCATIONS, OPPBANKACCOUNTID, OPPBANKACCOUNTNUMBER, 
+    OPPBANKACCOUNTNAME, OPPBANKAREAID, OPPBANKAREACODE, OPPBANKAREANAME, OPPCOUNTRYCODE, 
+    OPPCURRENCYID, OPPDIRECTCURCODE, OPPAMOUNT, OPPEXCHANGERATE, OPPLOCALCURRENCYAMOUNT, 
+    OPPCELLPHONE, OPPPRIVATEFLAG, OPPCARDTYPE, OPPCERTTYPE, OPPCERTNUMBER, OPPEMAILADDRESS, 
+    CNAPS, ISSAMEREGION, ISSAMEBANK, ISURGENT, PURPOSE, PURPOSEID, DIRECTCHANNELPURPOSE, 
+    CHECKCODE, PAYSTATE, PAYPERSONID, PAYSENDDATE, PAYMADEDATE, PAYINFOCODE, PAYINFO, 
+    PAYREQBATCHNO, PAYREQBATCHSEQUENCENO, PAYREQSERIALNO, REFUNDDATE, CANCELSTATE, FINVOUCHERCODE, 
+    GENRELATEDTRANSSTATE, RECORDSOURCE, RECORDSOURCEID, SRCOUTSYSTEMID, SRCBATCHNO, SRCSERIALNO, 
+    SRCNOTECODE, SPLITNO, PASSELNO, CREATEDBY, CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON, 
+    ROWVERSION, DESCRIPTION, ISCHECK, CHECKBATCHNO, ISPAYFAILSENDMSG, SPLITEDAMOUNT, 
+    SPLITMERGEFLAG, BUDGETITEMID, TERMINATESTATE, OURPAIDAMOUNT, COSTS, REMITTANCEPATH, 
+    COMPLIANCESTATE, COMPLIANCEINFO, TENANTID, SRCOUTSYSTEMURL, CANCELDATE, BANKSERIALNUMBER, 
+    CAPITALCATEGORYID, CASHFLOWITEMID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_SE_PAYMENTS_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_SE_PAYMENTS_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Payment" useGeneratedKeys="true">
+    insert into T_SE_PAYMENTS_HF (URID, ORGID, NOTECODE, APPLYORGID,
+      DEPTID, PAYDATE, PAYTYPEID, 
+      SETTLEMENTMODEID, DEALTYPE, DIRECTPAYWAY, 
+      DIRECTCHANNELCODE, DIRECTCHANNELCMDCODE, 
+      DIRECTINTERBANKCODE, ABSTRACTS, MEMO, 
+      OURORGID, OURBANKID, OURBANKLOCATIONS, 
+      OURBANKACCOUNTID, OURBANKACCOUNTNUMBER, 
+      OURBANKACCOUNTNAME, OURBANKAREAID, OURBANKAREACODE, 
+      OURBANKAREANAME, OURCOUNTRYCODE, OURCURRENCYID, 
+      OURDIRECTCURCODE, OURAMOUNT, OUREXCHANGERATE, 
+      OURLOCALCURRENCYAMOUNT, OPPOBJECTTYPE, OPPORGID, 
+      OPPCODE, OPPNAME, OPPCOUNTERPARTYCATEGORYID, 
+      OPPCOUNTERPARTYID, OPPBANKID, OPPBANKLOCATIONID, 
+      OPPBANKLOCATIONS, OPPBANKACCOUNTID, OPPBANKACCOUNTNUMBER, 
+      OPPBANKACCOUNTNAME, OPPBANKAREAID, OPPBANKAREACODE, 
+      OPPBANKAREANAME, OPPCOUNTRYCODE, OPPCURRENCYID, 
+      OPPDIRECTCURCODE, OPPAMOUNT, OPPEXCHANGERATE, 
+      OPPLOCALCURRENCYAMOUNT, OPPCELLPHONE, OPPPRIVATEFLAG, 
+      OPPCARDTYPE, OPPCERTTYPE, OPPCERTNUMBER, 
+      OPPEMAILADDRESS, CNAPS, ISSAMEREGION, 
+      ISSAMEBANK, ISURGENT, PURPOSE, 
+      PURPOSEID, DIRECTCHANNELPURPOSE, CHECKCODE, 
+      PAYSTATE, PAYPERSONID, PAYSENDDATE, 
+      PAYMADEDATE, PAYINFOCODE, PAYINFO, 
+      PAYREQBATCHNO, PAYREQBATCHSEQUENCENO, PAYREQSERIALNO, 
+      REFUNDDATE, CANCELSTATE, FINVOUCHERCODE, 
+      GENRELATEDTRANSSTATE, RECORDSOURCE, RECORDSOURCEID, 
+      SRCOUTSYSTEMID, SRCBATCHNO, SRCSERIALNO, 
+      SRCNOTECODE, SPLITNO, PASSELNO, 
+      CREATEDBY, CREATEDON, LASTMODIFIEDBY, 
+      LASTMODIFIEDON, ROWVERSION, DESCRIPTION, 
+      ISCHECK, CHECKBATCHNO, ISPAYFAILSENDMSG, 
+      SPLITEDAMOUNT, SPLITMERGEFLAG, BUDGETITEMID, 
+      TERMINATESTATE, OURPAIDAMOUNT, COSTS, 
+      REMITTANCEPATH, COMPLIANCESTATE, COMPLIANCEINFO, 
+      TENANTID, SRCOUTSYSTEMURL, CANCELDATE, 
+      BANKSERIALNUMBER, CAPITALCATEGORYID, CASHFLOWITEMID
+      )
+    values (#{urid,jdbcType=VARCHAR},#{orgid,jdbcType=VARCHAR}, #{notecode,jdbcType=VARCHAR}, #{applyorgid,jdbcType=VARCHAR},
+      #{deptid,jdbcType=VARCHAR}, #{paydate,jdbcType=TIMESTAMP}, #{paytypeid,jdbcType=VARCHAR}, 
+      #{settlementmodeid,jdbcType=VARCHAR}, #{dealtype,jdbcType=VARCHAR}, #{directpayway,jdbcType=VARCHAR}, 
+      #{directchannelcode,jdbcType=VARCHAR}, #{directchannelcmdcode,jdbcType=VARCHAR}, 
+      #{directinterbankcode,jdbcType=VARCHAR}, #{abstracts,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{ourorgid,jdbcType=VARCHAR}, #{ourbankid,jdbcType=VARCHAR}, #{ourbanklocations,jdbcType=VARCHAR}, 
+      #{ourbankaccountid,jdbcType=VARCHAR}, #{ourbankaccountnumber,jdbcType=VARCHAR}, 
+      #{ourbankaccountname,jdbcType=VARCHAR}, #{ourbankareaid,jdbcType=VARCHAR}, #{ourbankareacode,jdbcType=VARCHAR}, 
+      #{ourbankareaname,jdbcType=VARCHAR}, #{ourcountrycode,jdbcType=VARCHAR}, #{ourcurrencyid,jdbcType=VARCHAR}, 
+      #{ourdirectcurcode,jdbcType=VARCHAR}, #{ouramount,jdbcType=FLOAT}, #{ourexchangerate,jdbcType=FLOAT}, 
+      #{ourlocalcurrencyamount,jdbcType=FLOAT}, #{oppobjecttype,jdbcType=VARCHAR}, #{opporgid,jdbcType=VARCHAR}, 
+      #{oppcode,jdbcType=VARCHAR}, #{oppname,jdbcType=VARCHAR}, #{oppcounterpartycategoryid,jdbcType=VARCHAR}, 
+      #{oppcounterpartyid,jdbcType=VARCHAR}, #{oppbankid,jdbcType=VARCHAR}, #{oppbanklocationid,jdbcType=VARCHAR}, 
+      #{oppbanklocations,jdbcType=VARCHAR}, #{oppbankaccountid,jdbcType=VARCHAR}, #{oppbankaccountnumber,jdbcType=VARCHAR}, 
+      #{oppbankaccountname,jdbcType=VARCHAR}, #{oppbankareaid,jdbcType=VARCHAR}, #{oppbankareacode,jdbcType=VARCHAR}, 
+      #{oppbankareaname,jdbcType=VARCHAR}, #{oppcountrycode,jdbcType=VARCHAR}, #{oppcurrencyid,jdbcType=VARCHAR}, 
+      #{oppdirectcurcode,jdbcType=VARCHAR}, #{oppamount,jdbcType=FLOAT}, #{oppexchangerate,jdbcType=FLOAT}, 
+      #{opplocalcurrencyamount,jdbcType=FLOAT}, #{oppcellphone,jdbcType=VARCHAR}, #{oppprivateflag,jdbcType=CHAR}, 
+      #{oppcardtype,jdbcType=VARCHAR}, #{oppcerttype,jdbcType=VARCHAR}, #{oppcertnumber,jdbcType=VARCHAR}, 
+      #{oppemailaddress,jdbcType=VARCHAR}, #{cnaps,jdbcType=VARCHAR}, #{issameregion,jdbcType=CHAR}, 
+      #{issamebank,jdbcType=CHAR}, #{isurgent,jdbcType=CHAR}, #{purpose,jdbcType=VARCHAR}, 
+      #{purposeid,jdbcType=VARCHAR}, #{directchannelpurpose,jdbcType=VARCHAR}, #{checkcode,jdbcType=VARCHAR}, 
+      #{paystate,jdbcType=VARCHAR}, #{paypersonid,jdbcType=VARCHAR}, #{paysenddate,jdbcType=TIMESTAMP}, 
+      #{paymadedate,jdbcType=TIMESTAMP}, #{payinfocode,jdbcType=VARCHAR}, #{payinfo,jdbcType=VARCHAR}, 
+      #{payreqbatchno,jdbcType=VARCHAR}, #{payreqbatchsequenceno,jdbcType=VARCHAR}, #{payreqserialno,jdbcType=VARCHAR}, 
+      #{refunddate,jdbcType=TIMESTAMP}, #{cancelstate,jdbcType=VARCHAR}, #{finvouchercode,jdbcType=VARCHAR}, 
+      #{genrelatedtransstate,jdbcType=VARCHAR}, #{recordsource,jdbcType=VARCHAR}, #{recordsourceid,jdbcType=VARCHAR}, 
+      #{srcoutsystemid,jdbcType=VARCHAR}, #{srcbatchno,jdbcType=VARCHAR}, #{srcserialno,jdbcType=VARCHAR}, 
+      #{srcnotecode,jdbcType=VARCHAR}, #{splitno,jdbcType=VARCHAR}, #{passelno,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, 
+      #{lastmodifiedon,jdbcType=TIMESTAMP}, #{rowversion,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{ischeck,jdbcType=CHAR}, #{checkbatchno,jdbcType=VARCHAR}, #{ispayfailsendmsg,jdbcType=CHAR}, 
+      #{splitedamount,jdbcType=FLOAT}, #{splitmergeflag,jdbcType=CHAR}, #{budgetitemid,jdbcType=VARCHAR}, 
+      #{terminatestate,jdbcType=CHAR}, #{ourpaidamount,jdbcType=FLOAT}, #{costs,jdbcType=FLOAT}, 
+      #{remittancepath,jdbcType=VARCHAR}, #{compliancestate,jdbcType=VARCHAR}, #{complianceinfo,jdbcType=VARCHAR}, 
+      #{tenantid,jdbcType=DECIMAL}, #{srcoutsystemurl,jdbcType=VARCHAR}, #{canceldate,jdbcType=TIMESTAMP}, 
+      #{bankserialnumber,jdbcType=VARCHAR}, #{capitalcategoryid,jdbcType=VARCHAR}, #{cashflowitemid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Payment" useGeneratedKeys="true">
+    insert into T_SE_PAYMENTS_HF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="notecode != null">
+        NOTECODE,
+      </if>
+      <if test="applyorgid != null">
+        APPLYORGID,
+      </if>
+      <if test="deptid != null">
+        DEPTID,
+      </if>
+      <if test="paydate != null">
+        PAYDATE,
+      </if>
+      <if test="paytypeid != null">
+        PAYTYPEID,
+      </if>
+      <if test="settlementmodeid != null">
+        SETTLEMENTMODEID,
+      </if>
+      <if test="dealtype != null">
+        DEALTYPE,
+      </if>
+      <if test="directpayway != null">
+        DIRECTPAYWAY,
+      </if>
+      <if test="directchannelcode != null">
+        DIRECTCHANNELCODE,
+      </if>
+      <if test="directchannelcmdcode != null">
+        DIRECTCHANNELCMDCODE,
+      </if>
+      <if test="directinterbankcode != null">
+        DIRECTINTERBANKCODE,
+      </if>
+      <if test="abstracts != null">
+        ABSTRACTS,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="ourorgid != null">
+        OURORGID,
+      </if>
+      <if test="ourbankid != null">
+        OURBANKID,
+      </if>
+      <if test="ourbanklocations != null">
+        OURBANKLOCATIONS,
+      </if>
+      <if test="ourbankaccountid != null">
+        OURBANKACCOUNTID,
+      </if>
+      <if test="ourbankaccountnumber != null">
+        OURBANKACCOUNTNUMBER,
+      </if>
+      <if test="ourbankaccountname != null">
+        OURBANKACCOUNTNAME,
+      </if>
+      <if test="ourbankareaid != null">
+        OURBANKAREAID,
+      </if>
+      <if test="ourbankareacode != null">
+        OURBANKAREACODE,
+      </if>
+      <if test="ourbankareaname != null">
+        OURBANKAREANAME,
+      </if>
+      <if test="ourcountrycode != null">
+        OURCOUNTRYCODE,
+      </if>
+      <if test="ourcurrencyid != null">
+        OURCURRENCYID,
+      </if>
+      <if test="ourdirectcurcode != null">
+        OURDIRECTCURCODE,
+      </if>
+      <if test="ouramount != null">
+        OURAMOUNT,
+      </if>
+      <if test="ourexchangerate != null">
+        OUREXCHANGERATE,
+      </if>
+      <if test="ourlocalcurrencyamount != null">
+        OURLOCALCURRENCYAMOUNT,
+      </if>
+      <if test="oppobjecttype != null">
+        OPPOBJECTTYPE,
+      </if>
+      <if test="opporgid != null">
+        OPPORGID,
+      </if>
+      <if test="oppcode != null">
+        OPPCODE,
+      </if>
+      <if test="oppname != null">
+        OPPNAME,
+      </if>
+      <if test="oppcounterpartycategoryid != null">
+        OPPCOUNTERPARTYCATEGORYID,
+      </if>
+      <if test="oppcounterpartyid != null">
+        OPPCOUNTERPARTYID,
+      </if>
+      <if test="oppbankid != null">
+        OPPBANKID,
+      </if>
+      <if test="oppbanklocationid != null">
+        OPPBANKLOCATIONID,
+      </if>
+      <if test="oppbanklocations != null">
+        OPPBANKLOCATIONS,
+      </if>
+      <if test="oppbankaccountid != null">
+        OPPBANKACCOUNTID,
+      </if>
+      <if test="oppbankaccountnumber != null">
+        OPPBANKACCOUNTNUMBER,
+      </if>
+      <if test="oppbankaccountname != null">
+        OPPBANKACCOUNTNAME,
+      </if>
+      <if test="oppbankareaid != null">
+        OPPBANKAREAID,
+      </if>
+      <if test="oppbankareacode != null">
+        OPPBANKAREACODE,
+      </if>
+      <if test="oppbankareaname != null">
+        OPPBANKAREANAME,
+      </if>
+      <if test="oppcountrycode != null">
+        OPPCOUNTRYCODE,
+      </if>
+      <if test="oppcurrencyid != null">
+        OPPCURRENCYID,
+      </if>
+      <if test="oppdirectcurcode != null">
+        OPPDIRECTCURCODE,
+      </if>
+      <if test="oppamount != null">
+        OPPAMOUNT,
+      </if>
+      <if test="oppexchangerate != null">
+        OPPEXCHANGERATE,
+      </if>
+      <if test="opplocalcurrencyamount != null">
+        OPPLOCALCURRENCYAMOUNT,
+      </if>
+      <if test="oppcellphone != null">
+        OPPCELLPHONE,
+      </if>
+      <if test="oppprivateflag != null">
+        OPPPRIVATEFLAG,
+      </if>
+      <if test="oppcardtype != null">
+        OPPCARDTYPE,
+      </if>
+      <if test="oppcerttype != null">
+        OPPCERTTYPE,
+      </if>
+      <if test="oppcertnumber != null">
+        OPPCERTNUMBER,
+      </if>
+      <if test="oppemailaddress != null">
+        OPPEMAILADDRESS,
+      </if>
+      <if test="cnaps != null">
+        CNAPS,
+      </if>
+      <if test="issameregion != null">
+        ISSAMEREGION,
+      </if>
+      <if test="issamebank != null">
+        ISSAMEBANK,
+      </if>
+      <if test="isurgent != null">
+        ISURGENT,
+      </if>
+      <if test="purpose != null">
+        PURPOSE,
+      </if>
+      <if test="purposeid != null">
+        PURPOSEID,
+      </if>
+      <if test="directchannelpurpose != null">
+        DIRECTCHANNELPURPOSE,
+      </if>
+      <if test="checkcode != null">
+        CHECKCODE,
+      </if>
+      <if test="paystate != null">
+        PAYSTATE,
+      </if>
+      <if test="paypersonid != null">
+        PAYPERSONID,
+      </if>
+      <if test="paysenddate != null">
+        PAYSENDDATE,
+      </if>
+      <if test="paymadedate != null">
+        PAYMADEDATE,
+      </if>
+      <if test="payinfocode != null">
+        PAYINFOCODE,
+      </if>
+      <if test="payinfo != null">
+        PAYINFO,
+      </if>
+      <if test="payreqbatchno != null">
+        PAYREQBATCHNO,
+      </if>
+      <if test="payreqbatchsequenceno != null">
+        PAYREQBATCHSEQUENCENO,
+      </if>
+      <if test="payreqserialno != null">
+        PAYREQSERIALNO,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+      <if test="cancelstate != null">
+        CANCELSTATE,
+      </if>
+      <if test="finvouchercode != null">
+        FINVOUCHERCODE,
+      </if>
+      <if test="genrelatedtransstate != null">
+        GENRELATEDTRANSSTATE,
+      </if>
+      <if test="recordsource != null">
+        RECORDSOURCE,
+      </if>
+      <if test="recordsourceid != null">
+        RECORDSOURCEID,
+      </if>
+      <if test="srcoutsystemid != null">
+        SRCOUTSYSTEMID,
+      </if>
+      <if test="srcbatchno != null">
+        SRCBATCHNO,
+      </if>
+      <if test="srcserialno != null">
+        SRCSERIALNO,
+      </if>
+      <if test="srcnotecode != null">
+        SRCNOTECODE,
+      </if>
+      <if test="splitno != null">
+        SPLITNO,
+      </if>
+      <if test="passelno != null">
+        PASSELNO,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY,
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON,
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="ischeck != null">
+        ISCHECK,
+      </if>
+      <if test="checkbatchno != null">
+        CHECKBATCHNO,
+      </if>
+      <if test="ispayfailsendmsg != null">
+        ISPAYFAILSENDMSG,
+      </if>
+      <if test="splitedamount != null">
+        SPLITEDAMOUNT,
+      </if>
+      <if test="splitmergeflag != null">
+        SPLITMERGEFLAG,
+      </if>
+      <if test="budgetitemid != null">
+        BUDGETITEMID,
+      </if>
+      <if test="terminatestate != null">
+        TERMINATESTATE,
+      </if>
+      <if test="ourpaidamount != null">
+        OURPAIDAMOUNT,
+      </if>
+      <if test="costs != null">
+        COSTS,
+      </if>
+      <if test="remittancepath != null">
+        REMITTANCEPATH,
+      </if>
+      <if test="compliancestate != null">
+        COMPLIANCESTATE,
+      </if>
+      <if test="complianceinfo != null">
+        COMPLIANCEINFO,
+      </if>
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="srcoutsystemurl != null">
+        SRCOUTSYSTEMURL,
+      </if>
+      <if test="canceldate != null">
+        CANCELDATE,
+      </if>
+      <if test="bankserialnumber != null">
+        BANKSERIALNUMBER,
+      </if>
+      <if test="capitalcategoryid != null">
+        CAPITALCATEGORYID,
+      </if>
+      <if test="cashflowitemid != null">
+        CASHFLOWITEMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgid != null">
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="notecode != null">
+        #{notecode,jdbcType=VARCHAR},
+      </if>
+      <if test="applyorgid != null">
+        #{applyorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null">
+        #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytypeid != null">
+        #{paytypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementmodeid != null">
+        #{settlementmodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="dealtype != null">
+        #{dealtype,jdbcType=VARCHAR},
+      </if>
+      <if test="directpayway != null">
+        #{directpayway,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelcode != null">
+        #{directchannelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelcmdcode != null">
+        #{directchannelcmdcode,jdbcType=VARCHAR},
+      </if>
+      <if test="directinterbankcode != null">
+        #{directinterbankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="abstracts != null">
+        #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="ourorgid != null">
+        #{ourorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankid != null">
+        #{ourbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbanklocations != null">
+        #{ourbanklocations,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountid != null">
+        #{ourbankaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountnumber != null">
+        #{ourbankaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountname != null">
+        #{ourbankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareaid != null">
+        #{ourbankareaid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareacode != null">
+        #{ourbankareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareaname != null">
+        #{ourbankareaname,jdbcType=VARCHAR},
+      </if>
+      <if test="ourcountrycode != null">
+        #{ourcountrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="ourcurrencyid != null">
+        #{ourcurrencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourdirectcurcode != null">
+        #{ourdirectcurcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ouramount != null">
+        #{ouramount,jdbcType=FLOAT},
+      </if>
+      <if test="ourexchangerate != null">
+        #{ourexchangerate,jdbcType=FLOAT},
+      </if>
+      <if test="ourlocalcurrencyamount != null">
+        #{ourlocalcurrencyamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppobjecttype != null">
+        #{oppobjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="opporgid != null">
+        #{opporgid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcode != null">
+        #{oppcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppname != null">
+        #{oppname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcounterpartycategoryid != null">
+        #{oppcounterpartycategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcounterpartyid != null">
+        #{oppcounterpartyid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankid != null">
+        #{oppbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbanklocationid != null">
+        #{oppbanklocationid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbanklocations != null">
+        #{oppbanklocations,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountid != null">
+        #{oppbankaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountnumber != null">
+        #{oppbankaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountname != null">
+        #{oppbankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareaid != null">
+        #{oppbankareaid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareacode != null">
+        #{oppbankareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareaname != null">
+        #{oppbankareaname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcountrycode != null">
+        #{oppcountrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcurrencyid != null">
+        #{oppcurrencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppdirectcurcode != null">
+        #{oppdirectcurcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppamount != null">
+        #{oppamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppexchangerate != null">
+        #{oppexchangerate,jdbcType=FLOAT},
+      </if>
+      <if test="opplocalcurrencyamount != null">
+        #{opplocalcurrencyamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppcellphone != null">
+        #{oppcellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="oppprivateflag != null">
+        #{oppprivateflag,jdbcType=CHAR},
+      </if>
+      <if test="oppcardtype != null">
+        #{oppcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcerttype != null">
+        #{oppcerttype,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcertnumber != null">
+        #{oppcertnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oppemailaddress != null">
+        #{oppemailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cnaps != null">
+        #{cnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="issameregion != null">
+        #{issameregion,jdbcType=CHAR},
+      </if>
+      <if test="issamebank != null">
+        #{issamebank,jdbcType=CHAR},
+      </if>
+      <if test="isurgent != null">
+        #{isurgent,jdbcType=CHAR},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeid != null">
+        #{purposeid,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelpurpose != null">
+        #{directchannelpurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcode != null">
+        #{checkcode,jdbcType=VARCHAR},
+      </if>
+      <if test="paystate != null">
+        #{paystate,jdbcType=VARCHAR},
+      </if>
+      <if test="paypersonid != null">
+        #{paypersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="paysenddate != null">
+        #{paysenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymadedate != null">
+        #{paymadedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payinfocode != null">
+        #{payinfocode,jdbcType=VARCHAR},
+      </if>
+      <if test="payinfo != null">
+        #{payinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqbatchno != null">
+        #{payreqbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqbatchsequenceno != null">
+        #{payreqbatchsequenceno,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqserialno != null">
+        #{payreqserialno,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelstate != null">
+        #{cancelstate,jdbcType=VARCHAR},
+      </if>
+      <if test="finvouchercode != null">
+        #{finvouchercode,jdbcType=VARCHAR},
+      </if>
+      <if test="genrelatedtransstate != null">
+        #{genrelatedtransstate,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsource != null">
+        #{recordsource,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsourceid != null">
+        #{recordsourceid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcoutsystemid != null">
+        #{srcoutsystemid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbatchno != null">
+        #{srcbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="srcserialno != null">
+        #{srcserialno,jdbcType=VARCHAR},
+      </if>
+      <if test="srcnotecode != null">
+        #{srcnotecode,jdbcType=VARCHAR},
+      </if>
+      <if test="splitno != null">
+        #{splitno,jdbcType=VARCHAR},
+      </if>
+      <if test="passelno != null">
+        #{passelno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null">
+        #{ischeck,jdbcType=CHAR},
+      </if>
+      <if test="checkbatchno != null">
+        #{checkbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="ispayfailsendmsg != null">
+        #{ispayfailsendmsg,jdbcType=CHAR},
+      </if>
+      <if test="splitedamount != null">
+        #{splitedamount,jdbcType=FLOAT},
+      </if>
+      <if test="splitmergeflag != null">
+        #{splitmergeflag,jdbcType=CHAR},
+      </if>
+      <if test="budgetitemid != null">
+        #{budgetitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="terminatestate != null">
+        #{terminatestate,jdbcType=CHAR},
+      </if>
+      <if test="ourpaidamount != null">
+        #{ourpaidamount,jdbcType=FLOAT},
+      </if>
+      <if test="costs != null">
+        #{costs,jdbcType=FLOAT},
+      </if>
+      <if test="remittancepath != null">
+        #{remittancepath,jdbcType=VARCHAR},
+      </if>
+      <if test="compliancestate != null">
+        #{compliancestate,jdbcType=VARCHAR},
+      </if>
+      <if test="complianceinfo != null">
+        #{complianceinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="srcoutsystemurl != null">
+        #{srcoutsystemurl,jdbcType=VARCHAR},
+      </if>
+      <if test="canceldate != null">
+        #{canceldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankserialnumber != null">
+        #{bankserialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalcategoryid != null">
+        #{capitalcategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="cashflowitemid != null">
+        #{cashflowitemid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.micro.sharding.entity.Payment">
+    update T_SE_PAYMENTS_HF
+    <set>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="notecode != null">
+        NOTECODE = #{notecode,jdbcType=VARCHAR},
+      </if>
+      <if test="applyorgid != null">
+        APPLYORGID = #{applyorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="paydate != null">
+        PAYDATE = #{paydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paytypeid != null">
+        PAYTYPEID = #{paytypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementmodeid != null">
+        SETTLEMENTMODEID = #{settlementmodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="dealtype != null">
+        DEALTYPE = #{dealtype,jdbcType=VARCHAR},
+      </if>
+      <if test="directpayway != null">
+        DIRECTPAYWAY = #{directpayway,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelcode != null">
+        DIRECTCHANNELCODE = #{directchannelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelcmdcode != null">
+        DIRECTCHANNELCMDCODE = #{directchannelcmdcode,jdbcType=VARCHAR},
+      </if>
+      <if test="directinterbankcode != null">
+        DIRECTINTERBANKCODE = #{directinterbankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="abstracts != null">
+        ABSTRACTS = #{abstracts,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="ourorgid != null">
+        OURORGID = #{ourorgid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankid != null">
+        OURBANKID = #{ourbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbanklocations != null">
+        OURBANKLOCATIONS = #{ourbanklocations,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountid != null">
+        OURBANKACCOUNTID = #{ourbankaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountnumber != null">
+        OURBANKACCOUNTNUMBER = #{ourbankaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankaccountname != null">
+        OURBANKACCOUNTNAME = #{ourbankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareaid != null">
+        OURBANKAREAID = #{ourbankareaid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareacode != null">
+        OURBANKAREACODE = #{ourbankareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="ourbankareaname != null">
+        OURBANKAREANAME = #{ourbankareaname,jdbcType=VARCHAR},
+      </if>
+      <if test="ourcountrycode != null">
+        OURCOUNTRYCODE = #{ourcountrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="ourcurrencyid != null">
+        OURCURRENCYID = #{ourcurrencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourdirectcurcode != null">
+        OURDIRECTCURCODE = #{ourdirectcurcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ouramount != null">
+        OURAMOUNT = #{ouramount,jdbcType=FLOAT},
+      </if>
+      <if test="ourexchangerate != null">
+        OUREXCHANGERATE = #{ourexchangerate,jdbcType=FLOAT},
+      </if>
+      <if test="ourlocalcurrencyamount != null">
+        OURLOCALCURRENCYAMOUNT = #{ourlocalcurrencyamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppobjecttype != null">
+        OPPOBJECTTYPE = #{oppobjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="opporgid != null">
+        OPPORGID = #{opporgid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcode != null">
+        OPPCODE = #{oppcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppname != null">
+        OPPNAME = #{oppname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcounterpartycategoryid != null">
+        OPPCOUNTERPARTYCATEGORYID = #{oppcounterpartycategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcounterpartyid != null">
+        OPPCOUNTERPARTYID = #{oppcounterpartyid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankid != null">
+        OPPBANKID = #{oppbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbanklocationid != null">
+        OPPBANKLOCATIONID = #{oppbanklocationid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbanklocations != null">
+        OPPBANKLOCATIONS = #{oppbanklocations,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountid != null">
+        OPPBANKACCOUNTID = #{oppbankaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountnumber != null">
+        OPPBANKACCOUNTNUMBER = #{oppbankaccountnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankaccountname != null">
+        OPPBANKACCOUNTNAME = #{oppbankaccountname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareaid != null">
+        OPPBANKAREAID = #{oppbankareaid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareacode != null">
+        OPPBANKAREACODE = #{oppbankareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppbankareaname != null">
+        OPPBANKAREANAME = #{oppbankareaname,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcountrycode != null">
+        OPPCOUNTRYCODE = #{oppcountrycode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcurrencyid != null">
+        OPPCURRENCYID = #{oppcurrencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="oppdirectcurcode != null">
+        OPPDIRECTCURCODE = #{oppdirectcurcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppamount != null">
+        OPPAMOUNT = #{oppamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppexchangerate != null">
+        OPPEXCHANGERATE = #{oppexchangerate,jdbcType=FLOAT},
+      </if>
+      <if test="opplocalcurrencyamount != null">
+        OPPLOCALCURRENCYAMOUNT = #{opplocalcurrencyamount,jdbcType=FLOAT},
+      </if>
+      <if test="oppcellphone != null">
+        OPPCELLPHONE = #{oppcellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="oppprivateflag != null">
+        OPPPRIVATEFLAG = #{oppprivateflag,jdbcType=CHAR},
+      </if>
+      <if test="oppcardtype != null">
+        OPPCARDTYPE = #{oppcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcerttype != null">
+        OPPCERTTYPE = #{oppcerttype,jdbcType=VARCHAR},
+      </if>
+      <if test="oppcertnumber != null">
+        OPPCERTNUMBER = #{oppcertnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="oppemailaddress != null">
+        OPPEMAILADDRESS = #{oppemailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cnaps != null">
+        CNAPS = #{cnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="issameregion != null">
+        ISSAMEREGION = #{issameregion,jdbcType=CHAR},
+      </if>
+      <if test="issamebank != null">
+        ISSAMEBANK = #{issamebank,jdbcType=CHAR},
+      </if>
+      <if test="isurgent != null">
+        ISURGENT = #{isurgent,jdbcType=CHAR},
+      </if>
+      <if test="purpose != null">
+        PURPOSE = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeid != null">
+        PURPOSEID = #{purposeid,jdbcType=VARCHAR},
+      </if>
+      <if test="directchannelpurpose != null">
+        DIRECTCHANNELPURPOSE = #{directchannelpurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="checkcode != null">
+        CHECKCODE = #{checkcode,jdbcType=VARCHAR},
+      </if>
+      <if test="paystate != null">
+        PAYSTATE = #{paystate,jdbcType=VARCHAR},
+      </if>
+      <if test="paypersonid != null">
+        PAYPERSONID = #{paypersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="paysenddate != null">
+        PAYSENDDATE = #{paysenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymadedate != null">
+        PAYMADEDATE = #{paymadedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payinfocode != null">
+        PAYINFOCODE = #{payinfocode,jdbcType=VARCHAR},
+      </if>
+      <if test="payinfo != null">
+        PAYINFO = #{payinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqbatchno != null">
+        PAYREQBATCHNO = #{payreqbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqbatchsequenceno != null">
+        PAYREQBATCHSEQUENCENO = #{payreqbatchsequenceno,jdbcType=VARCHAR},
+      </if>
+      <if test="payreqserialno != null">
+        PAYREQSERIALNO = #{payreqserialno,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelstate != null">
+        CANCELSTATE = #{cancelstate,jdbcType=VARCHAR},
+      </if>
+      <if test="finvouchercode != null">
+        FINVOUCHERCODE = #{finvouchercode,jdbcType=VARCHAR},
+      </if>
+      <if test="genrelatedtransstate != null">
+        GENRELATEDTRANSSTATE = #{genrelatedtransstate,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsource != null">
+        RECORDSOURCE = #{recordsource,jdbcType=VARCHAR},
+      </if>
+      <if test="recordsourceid != null">
+        RECORDSOURCEID = #{recordsourceid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcoutsystemid != null">
+        SRCOUTSYSTEMID = #{srcoutsystemid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcbatchno != null">
+        SRCBATCHNO = #{srcbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="srcserialno != null">
+        SRCSERIALNO = #{srcserialno,jdbcType=VARCHAR},
+      </if>
+      <if test="srcnotecode != null">
+        SRCNOTECODE = #{srcnotecode,jdbcType=VARCHAR},
+      </if>
+      <if test="splitno != null">
+        SPLITNO = #{splitno,jdbcType=VARCHAR},
+      </if>
+      <if test="passelno != null">
+        PASSELNO = #{passelno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null">
+        ISCHECK = #{ischeck,jdbcType=CHAR},
+      </if>
+      <if test="checkbatchno != null">
+        CHECKBATCHNO = #{checkbatchno,jdbcType=VARCHAR},
+      </if>
+      <if test="ispayfailsendmsg != null">
+        ISPAYFAILSENDMSG = #{ispayfailsendmsg,jdbcType=CHAR},
+      </if>
+      <if test="splitedamount != null">
+        SPLITEDAMOUNT = #{splitedamount,jdbcType=FLOAT},
+      </if>
+      <if test="splitmergeflag != null">
+        SPLITMERGEFLAG = #{splitmergeflag,jdbcType=CHAR},
+      </if>
+      <if test="budgetitemid != null">
+        BUDGETITEMID = #{budgetitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="terminatestate != null">
+        TERMINATESTATE = #{terminatestate,jdbcType=CHAR},
+      </if>
+      <if test="ourpaidamount != null">
+        OURPAIDAMOUNT = #{ourpaidamount,jdbcType=FLOAT},
+      </if>
+      <if test="costs != null">
+        COSTS = #{costs,jdbcType=FLOAT},
+      </if>
+      <if test="remittancepath != null">
+        REMITTANCEPATH = #{remittancepath,jdbcType=VARCHAR},
+      </if>
+      <if test="compliancestate != null">
+        COMPLIANCESTATE = #{compliancestate,jdbcType=VARCHAR},
+      </if>
+      <if test="complianceinfo != null">
+        COMPLIANCEINFO = #{complianceinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="srcoutsystemurl != null">
+        SRCOUTSYSTEMURL = #{srcoutsystemurl,jdbcType=VARCHAR},
+      </if>
+      <if test="canceldate != null">
+        CANCELDATE = #{canceldate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankserialnumber != null">
+        BANKSERIALNUMBER = #{bankserialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalcategoryid != null">
+        CAPITALCATEGORYID = #{capitalcategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="cashflowitemid != null">
+        CASHFLOWITEMID = #{cashflowitemid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.micro.sharding.entity.Payment">
+    update T_SE_PAYMENTS_HF
+    set ORGID = #{orgid,jdbcType=VARCHAR},
+      NOTECODE = #{notecode,jdbcType=VARCHAR},
+      APPLYORGID = #{applyorgid,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      PAYDATE = #{paydate,jdbcType=TIMESTAMP},
+      PAYTYPEID = #{paytypeid,jdbcType=VARCHAR},
+      SETTLEMENTMODEID = #{settlementmodeid,jdbcType=VARCHAR},
+      DEALTYPE = #{dealtype,jdbcType=VARCHAR},
+      DIRECTPAYWAY = #{directpayway,jdbcType=VARCHAR},
+      DIRECTCHANNELCODE = #{directchannelcode,jdbcType=VARCHAR},
+      DIRECTCHANNELCMDCODE = #{directchannelcmdcode,jdbcType=VARCHAR},
+      DIRECTINTERBANKCODE = #{directinterbankcode,jdbcType=VARCHAR},
+      ABSTRACTS = #{abstracts,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      OURORGID = #{ourorgid,jdbcType=VARCHAR},
+      OURBANKID = #{ourbankid,jdbcType=VARCHAR},
+      OURBANKLOCATIONS = #{ourbanklocations,jdbcType=VARCHAR},
+      OURBANKACCOUNTID = #{ourbankaccountid,jdbcType=VARCHAR},
+      OURBANKACCOUNTNUMBER = #{ourbankaccountnumber,jdbcType=VARCHAR},
+      OURBANKACCOUNTNAME = #{ourbankaccountname,jdbcType=VARCHAR},
+      OURBANKAREAID = #{ourbankareaid,jdbcType=VARCHAR},
+      OURBANKAREACODE = #{ourbankareacode,jdbcType=VARCHAR},
+      OURBANKAREANAME = #{ourbankareaname,jdbcType=VARCHAR},
+      OURCOUNTRYCODE = #{ourcountrycode,jdbcType=VARCHAR},
+      OURCURRENCYID = #{ourcurrencyid,jdbcType=VARCHAR},
+      OURDIRECTCURCODE = #{ourdirectcurcode,jdbcType=VARCHAR},
+      OURAMOUNT = #{ouramount,jdbcType=FLOAT},
+      OUREXCHANGERATE = #{ourexchangerate,jdbcType=FLOAT},
+      OURLOCALCURRENCYAMOUNT = #{ourlocalcurrencyamount,jdbcType=FLOAT},
+      OPPOBJECTTYPE = #{oppobjecttype,jdbcType=VARCHAR},
+      OPPORGID = #{opporgid,jdbcType=VARCHAR},
+      OPPCODE = #{oppcode,jdbcType=VARCHAR},
+      OPPNAME = #{oppname,jdbcType=VARCHAR},
+      OPPCOUNTERPARTYCATEGORYID = #{oppcounterpartycategoryid,jdbcType=VARCHAR},
+      OPPCOUNTERPARTYID = #{oppcounterpartyid,jdbcType=VARCHAR},
+      OPPBANKID = #{oppbankid,jdbcType=VARCHAR},
+      OPPBANKLOCATIONID = #{oppbanklocationid,jdbcType=VARCHAR},
+      OPPBANKLOCATIONS = #{oppbanklocations,jdbcType=VARCHAR},
+      OPPBANKACCOUNTID = #{oppbankaccountid,jdbcType=VARCHAR},
+      OPPBANKACCOUNTNUMBER = #{oppbankaccountnumber,jdbcType=VARCHAR},
+      OPPBANKACCOUNTNAME = #{oppbankaccountname,jdbcType=VARCHAR},
+      OPPBANKAREAID = #{oppbankareaid,jdbcType=VARCHAR},
+      OPPBANKAREACODE = #{oppbankareacode,jdbcType=VARCHAR},
+      OPPBANKAREANAME = #{oppbankareaname,jdbcType=VARCHAR},
+      OPPCOUNTRYCODE = #{oppcountrycode,jdbcType=VARCHAR},
+      OPPCURRENCYID = #{oppcurrencyid,jdbcType=VARCHAR},
+      OPPDIRECTCURCODE = #{oppdirectcurcode,jdbcType=VARCHAR},
+      OPPAMOUNT = #{oppamount,jdbcType=FLOAT},
+      OPPEXCHANGERATE = #{oppexchangerate,jdbcType=FLOAT},
+      OPPLOCALCURRENCYAMOUNT = #{opplocalcurrencyamount,jdbcType=FLOAT},
+      OPPCELLPHONE = #{oppcellphone,jdbcType=VARCHAR},
+      OPPPRIVATEFLAG = #{oppprivateflag,jdbcType=CHAR},
+      OPPCARDTYPE = #{oppcardtype,jdbcType=VARCHAR},
+      OPPCERTTYPE = #{oppcerttype,jdbcType=VARCHAR},
+      OPPCERTNUMBER = #{oppcertnumber,jdbcType=VARCHAR},
+      OPPEMAILADDRESS = #{oppemailaddress,jdbcType=VARCHAR},
+      CNAPS = #{cnaps,jdbcType=VARCHAR},
+      ISSAMEREGION = #{issameregion,jdbcType=CHAR},
+      ISSAMEBANK = #{issamebank,jdbcType=CHAR},
+      ISURGENT = #{isurgent,jdbcType=CHAR},
+      PURPOSE = #{purpose,jdbcType=VARCHAR},
+      PURPOSEID = #{purposeid,jdbcType=VARCHAR},
+      DIRECTCHANNELPURPOSE = #{directchannelpurpose,jdbcType=VARCHAR},
+      CHECKCODE = #{checkcode,jdbcType=VARCHAR},
+      PAYSTATE = #{paystate,jdbcType=VARCHAR},
+      PAYPERSONID = #{paypersonid,jdbcType=VARCHAR},
+      PAYSENDDATE = #{paysenddate,jdbcType=TIMESTAMP},
+      PAYMADEDATE = #{paymadedate,jdbcType=TIMESTAMP},
+      PAYINFOCODE = #{payinfocode,jdbcType=VARCHAR},
+      PAYINFO = #{payinfo,jdbcType=VARCHAR},
+      PAYREQBATCHNO = #{payreqbatchno,jdbcType=VARCHAR},
+      PAYREQBATCHSEQUENCENO = #{payreqbatchsequenceno,jdbcType=VARCHAR},
+      PAYREQSERIALNO = #{payreqserialno,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      CANCELSTATE = #{cancelstate,jdbcType=VARCHAR},
+      FINVOUCHERCODE = #{finvouchercode,jdbcType=VARCHAR},
+      GENRELATEDTRANSSTATE = #{genrelatedtransstate,jdbcType=VARCHAR},
+      RECORDSOURCE = #{recordsource,jdbcType=VARCHAR},
+      RECORDSOURCEID = #{recordsourceid,jdbcType=VARCHAR},
+      SRCOUTSYSTEMID = #{srcoutsystemid,jdbcType=VARCHAR},
+      SRCBATCHNO = #{srcbatchno,jdbcType=VARCHAR},
+      SRCSERIALNO = #{srcserialno,jdbcType=VARCHAR},
+      SRCNOTECODE = #{srcnotecode,jdbcType=VARCHAR},
+      SPLITNO = #{splitno,jdbcType=VARCHAR},
+      PASSELNO = #{passelno,jdbcType=VARCHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ISCHECK = #{ischeck,jdbcType=CHAR},
+      CHECKBATCHNO = #{checkbatchno,jdbcType=VARCHAR},
+      ISPAYFAILSENDMSG = #{ispayfailsendmsg,jdbcType=CHAR},
+      SPLITEDAMOUNT = #{splitedamount,jdbcType=FLOAT},
+      SPLITMERGEFLAG = #{splitmergeflag,jdbcType=CHAR},
+      BUDGETITEMID = #{budgetitemid,jdbcType=VARCHAR},
+      TERMINATESTATE = #{terminatestate,jdbcType=CHAR},
+      OURPAIDAMOUNT = #{ourpaidamount,jdbcType=FLOAT},
+      COSTS = #{costs,jdbcType=FLOAT},
+      REMITTANCEPATH = #{remittancepath,jdbcType=VARCHAR},
+      COMPLIANCESTATE = #{compliancestate,jdbcType=VARCHAR},
+      COMPLIANCEINFO = #{complianceinfo,jdbcType=VARCHAR},
+      TENANTID = #{tenantid,jdbcType=DECIMAL},
+      SRCOUTSYSTEMURL = #{srcoutsystemurl,jdbcType=VARCHAR},
+      CANCELDATE = #{canceldate,jdbcType=TIMESTAMP},
+      BANKSERIALNUMBER = #{bankserialnumber,jdbcType=VARCHAR},
+      CAPITALCATEGORYID = #{capitalcategoryid,jdbcType=VARCHAR},
+      CASHFLOWITEMID = #{cashflowitemid,jdbcType=VARCHAR}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,16 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+archivesBaseName = "user-provider"
+
+configurations {
+//    compile.exclude module: 'spring-boot-starter-tomcat'
+//    compile.exclude module: 'slf4j-log4j12'
+}
+
+dependencies {
+    compile(project(":user-provider-client"))
+    implementation ("org.springframework.boot:spring-boot-starter-web")
+    implementation ("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
+    implementation ("com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel")
+}

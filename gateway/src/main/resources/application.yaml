@@ -1,0 +1,37 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: nacos-geteway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        port: 9003
+        dashboard: localhost:8080
+      # 取消Sentinel控制台懒加载
+      eager: true
+      app:
+        type: 1
+      scg:
+        fallback:
+          mode: response
+          response-status: 455
+          response-body: "The system is busy, please try again later!"
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: nacos-getway-provider
+          uri: lb://nacos-provider
+          predicates:
+            - Path=/provider/**
+        - id: nacos-getway-consumer
+          uri: lb://nacos-consumer
+          predicates:
+            - Path=/consumer/**

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.micro.sharding.dao.MerchantDao">
+  <resultMap id="BaseResultMap" type="com.test.micro.sharding.entity.Merchant">
+    <id column="URID" jdbcType="VARCHAR" property="urid" />
+    <result column="TENANTID" jdbcType="DECIMAL" property="tenantid" />
+    <result column="TENANTCODE" jdbcType="VARCHAR" property="tenantcode" />
+    <result column="MERCHANTNO" jdbcType="VARCHAR" property="merchantno" />
+    <result column="MERCHANTNAME" jdbcType="VARCHAR" property="merchantname" />
+    <result column="MERCHANTSECRET" jdbcType="VARCHAR" property="merchantsecret" />
+    <result column="ISACTIVE" jdbcType="CHAR" property="isactive" />
+    <result column="ROWVERSION" jdbcType="DECIMAL" property="rowversion" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="LASTMODIFIEDBY" jdbcType="VARCHAR" property="lastmodifiedby" />
+    <result column="LASTMODIFIEDON" jdbcType="TIMESTAMP" property="lastmodifiedon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    URID, TENANTID, TENANTCODE, MERCHANTNO, MERCHANTNAME, MERCHANTSECRET, ISACTIVE, ROWVERSION, 
+    DESCRIPTION, CREATEDBY, CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_SE_MERCHANT_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_SE_MERCHANT_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Merchant" useGeneratedKeys="true">
+    insert into T_SE_MERCHANT_HF (TENANTID, TENANTCODE, MERCHANTNO, 
+      MERCHANTNAME, MERCHANTSECRET, ISACTIVE, 
+      ROWVERSION, DESCRIPTION, CREATEDBY, 
+      CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON
+      )
+    values (#{tenantid,jdbcType=DECIMAL}, #{tenantcode,jdbcType=VARCHAR}, #{merchantno,jdbcType=VARCHAR}, 
+      #{merchantname,jdbcType=VARCHAR}, #{merchantsecret,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, 
+      #{rowversion,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{createdby,jdbcType=VARCHAR}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, #{lastmodifiedon,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Merchant" useGeneratedKeys="true">
+    insert into T_SE_MERCHANT_HF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="tenantcode != null">
+        TENANTCODE,
+      </if>
+      <if test="merchantno != null">
+        MERCHANTNO,
+      </if>
+      <if test="merchantname != null">
+        MERCHANTNAME,
+      </if>
+      <if test="merchantsecret != null">
+        MERCHANTSECRET,
+      </if>
+      <if test="isactive != null">
+        ISACTIVE,
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY,
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="tenantcode != null">
+        #{tenantcode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantno != null">
+        #{merchantno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantname != null">
+        #{merchantname,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantsecret != null">
+        #{merchantsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="rowversion != null">
+        #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.test.micro.sharding.entity.Merchant">
+    update T_SE_MERCHANT_HF
+    <set>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="tenantcode != null">
+        TENANTCODE = #{tenantcode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantno != null">
+        MERCHANTNO = #{merchantno,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantname != null">
+        MERCHANTNAME = #{merchantname,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantsecret != null">
+        MERCHANTSECRET = #{merchantsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.test.micro.sharding.entity.Merchant">
+    update T_SE_MERCHANT_HF
+    set TENANTID = #{tenantid,jdbcType=DECIMAL},
+      TENANTCODE = #{tenantcode,jdbcType=VARCHAR},
+      MERCHANTNO = #{merchantno,jdbcType=VARCHAR},
+      MERCHANTNAME = #{merchantname,jdbcType=VARCHAR},
+      MERCHANTSECRET = #{merchantsecret,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+</mapper>

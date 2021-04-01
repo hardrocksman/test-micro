@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generate.TSePaymentdetailHfDao">
+  <resultMap id="BaseResultMap" type="generate.TSePaymentdetailHf">
+    <id column="URID" jdbcType="VARCHAR" property="urid" />
+    <result column="PAYMENTID" jdbcType="VARCHAR" property="paymentid" />
+    <result column="BUDGETSID" jdbcType="VARCHAR" property="budgetsid" />
+    <result column="AMOUNT" jdbcType="FLOAT" property="amount" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="LASTMODIFIEDON" jdbcType="TIMESTAMP" property="lastmodifiedon" />
+    <result column="LASTMODIFIEDBY" jdbcType="VARCHAR" property="lastmodifiedby" />
+    <result column="ROWVERSION" jdbcType="DECIMAL" property="rowversion" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="TENANTID" jdbcType="DECIMAL" property="tenantid" />
+    <result column="ORGID" jdbcType="VARCHAR" property="orgid" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="PROJECTITEMID" jdbcType="VARCHAR" property="projectitemid" />
+    <result column="CAPITALCATEGORYID" jdbcType="VARCHAR" property="capitalcategoryid" />
+    <result column="CASHFLOWITEMID" jdbcType="VARCHAR" property="cashflowitemid" />
+    <result column="CONTRACTCODE" jdbcType="VARCHAR" property="contractcode" />
+    <result column="OPPINTERNALACCOUNTID" jdbcType="VARCHAR" property="oppinternalaccountid" />
+    <result column="OURINTERNALACCOUNTID" jdbcType="VARCHAR" property="ourinternalaccountid" />
+    <result column="TAXAMOUNT" jdbcType="VARCHAR" property="taxamount" />
+    <result column="TAXRATE" jdbcType="VARCHAR" property="taxrate" />
+    <result column="EXTFIELD1" jdbcType="VARCHAR" property="extfield1" />
+    <result column="EXTFIELD2" jdbcType="VARCHAR" property="extfield2" />
+    <result column="EXTFIELD3" jdbcType="VARCHAR" property="extfield3" />
+    <result column="EXTFIELD4" jdbcType="VARCHAR" property="extfield4" />
+    <result column="EXTFIELD5" jdbcType="VARCHAR" property="extfield5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    URID, PAYMENTID, BUDGETSID, AMOUNT, MEMO, CREATEDON, CREATEDBY, LASTMODIFIEDON, LASTMODIFIEDBY, 
+    ROWVERSION, DESCRIPTION, TENANTID, ORGID, DEPTID, PROJECTITEMID, CAPITALCATEGORYID, 
+    CASHFLOWITEMID, CONTRACTCODE, OPPINTERNALACCOUNTID, OURINTERNALACCOUNTID, TAXAMOUNT, 
+    TAXRATE, EXTFIELD1, EXTFIELD2, EXTFIELD3, EXTFIELD4, EXTFIELD5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_SE_PAYMENTDETAIL_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_SE_PAYMENTDETAIL_HF
+    where URID = #{urid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="URID" keyProperty="urid" parameterType="generate.TSePaymentdetailHf" useGeneratedKeys="true">
+    insert into T_SE_PAYMENTDETAIL_HF (PAYMENTID, BUDGETSID, AMOUNT, 
+      MEMO, CREATEDON, CREATEDBY, 
+      LASTMODIFIEDON, LASTMODIFIEDBY, ROWVERSION, 
+      DESCRIPTION, TENANTID, ORGID, 
+      DEPTID, PROJECTITEMID, CAPITALCATEGORYID, 
+      CASHFLOWITEMID, CONTRACTCODE, OPPINTERNALACCOUNTID, 
+      OURINTERNALACCOUNTID, TAXAMOUNT, TAXRATE, 
+      EXTFIELD1, EXTFIELD2, EXTFIELD3, 
+      EXTFIELD4, EXTFIELD5)
+    values (#{paymentid,jdbcType=VARCHAR}, #{budgetsid,jdbcType=VARCHAR}, #{amount,jdbcType=FLOAT}, 
+      #{memo,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, 
+      #{lastmodifiedon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, #{rowversion,jdbcType=DECIMAL}, 
+      #{description,jdbcType=VARCHAR}, #{tenantid,jdbcType=DECIMAL}, #{orgid,jdbcType=VARCHAR}, 
+      #{deptid,jdbcType=VARCHAR}, #{projectitemid,jdbcType=VARCHAR}, #{capitalcategoryid,jdbcType=VARCHAR}, 
+      #{cashflowitemid,jdbcType=VARCHAR}, #{contractcode,jdbcType=VARCHAR}, #{oppinternalaccountid,jdbcType=VARCHAR}, 
+      #{ourinternalaccountid,jdbcType=VARCHAR}, #{taxamount,jdbcType=VARCHAR}, #{taxrate,jdbcType=VARCHAR}, 
+      #{extfield1,jdbcType=VARCHAR}, #{extfield2,jdbcType=VARCHAR}, #{extfield3,jdbcType=VARCHAR}, 
+      #{extfield4,jdbcType=VARCHAR}, #{extfield5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="URID" keyProperty="urid" parameterType="generate.TSePaymentdetailHf" useGeneratedKeys="true">
+    insert into T_SE_PAYMENTDETAIL_HF
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paymentid != null">
+        PAYMENTID,
+      </if>
+      <if test="budgetsid != null">
+        BUDGETSID,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="memo != null">
+        MEMO,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON,
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY,
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="deptid != null">
+        DEPTID,
+      </if>
+      <if test="projectitemid != null">
+        PROJECTITEMID,
+      </if>
+      <if test="capitalcategoryid != null">
+        CAPITALCATEGORYID,
+      </if>
+      <if test="cashflowitemid != null">
+        CASHFLOWITEMID,
+      </if>
+      <if test="contractcode != null">
+        CONTRACTCODE,
+      </if>
+      <if test="oppinternalaccountid != null">
+        OPPINTERNALACCOUNTID,
+      </if>
+      <if test="ourinternalaccountid != null">
+        OURINTERNALACCOUNTID,
+      </if>
+      <if test="taxamount != null">
+        TAXAMOUNT,
+      </if>
+      <if test="taxrate != null">
+        TAXRATE,
+      </if>
+      <if test="extfield1 != null">
+        EXTFIELD1,
+      </if>
+      <if test="extfield2 != null">
+        EXTFIELD2,
+      </if>
+      <if test="extfield3 != null">
+        EXTFIELD3,
+      </if>
+      <if test="extfield4 != null">
+        EXTFIELD4,
+      </if>
+      <if test="extfield5 != null">
+        EXTFIELD5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paymentid != null">
+        #{paymentid,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetsid != null">
+        #{budgetsid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=FLOAT},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="rowversion != null">
+        #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null">
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectitemid != null">
+        #{projectitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalcategoryid != null">
+        #{capitalcategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="cashflowitemid != null">
+        #{cashflowitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="contractcode != null">
+        #{contractcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppinternalaccountid != null">
+        #{oppinternalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourinternalaccountid != null">
+        #{ourinternalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="taxamount != null">
+        #{taxamount,jdbcType=VARCHAR},
+      </if>
+      <if test="taxrate != null">
+        #{taxrate,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield1 != null">
+        #{extfield1,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield2 != null">
+        #{extfield2,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield3 != null">
+        #{extfield3,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield4 != null">
+        #{extfield4,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield5 != null">
+        #{extfield5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="generate.TSePaymentdetailHf">
+    update T_SE_PAYMENTDETAIL_HF
+    <set>
+      <if test="paymentid != null">
+        PAYMENTID = #{paymentid,jdbcType=VARCHAR},
+      </if>
+      <if test="budgetsid != null">
+        BUDGETSID = #{budgetsid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=FLOAT},
+      </if>
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="projectitemid != null">
+        PROJECTITEMID = #{projectitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalcategoryid != null">
+        CAPITALCATEGORYID = #{capitalcategoryid,jdbcType=VARCHAR},
+      </if>
+      <if test="cashflowitemid != null">
+        CASHFLOWITEMID = #{cashflowitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="contractcode != null">
+        CONTRACTCODE = #{contractcode,jdbcType=VARCHAR},
+      </if>
+      <if test="oppinternalaccountid != null">
+        OPPINTERNALACCOUNTID = #{oppinternalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="ourinternalaccountid != null">
+        OURINTERNALACCOUNTID = #{ourinternalaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="taxamount != null">
+        TAXAMOUNT = #{taxamount,jdbcType=VARCHAR},
+      </if>
+      <if test="taxrate != null">
+        TAXRATE = #{taxrate,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield1 != null">
+        EXTFIELD1 = #{extfield1,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield2 != null">
+        EXTFIELD2 = #{extfield2,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield3 != null">
+        EXTFIELD3 = #{extfield3,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield4 != null">
+        EXTFIELD4 = #{extfield4,jdbcType=VARCHAR},
+      </if>
+      <if test="extfield5 != null">
+        EXTFIELD5 = #{extfield5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="generate.TSePaymentdetailHf">
+    update T_SE_PAYMENTDETAIL_HF
+    set PAYMENTID = #{paymentid,jdbcType=VARCHAR},
+      BUDGETSID = #{budgetsid,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=FLOAT},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TENANTID = #{tenantid,jdbcType=DECIMAL},
+      ORGID = #{orgid,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      PROJECTITEMID = #{projectitemid,jdbcType=VARCHAR},
+      CAPITALCATEGORYID = #{capitalcategoryid,jdbcType=VARCHAR},
+      CASHFLOWITEMID = #{cashflowitemid,jdbcType=VARCHAR},
+      CONTRACTCODE = #{contractcode,jdbcType=VARCHAR},
+      OPPINTERNALACCOUNTID = #{oppinternalaccountid,jdbcType=VARCHAR},
+      OURINTERNALACCOUNTID = #{ourinternalaccountid,jdbcType=VARCHAR},
+      TAXAMOUNT = #{taxamount,jdbcType=VARCHAR},
+      TAXRATE = #{taxrate,jdbcType=VARCHAR},
+      EXTFIELD1 = #{extfield1,jdbcType=VARCHAR},
+      EXTFIELD2 = #{extfield2,jdbcType=VARCHAR},
+      EXTFIELD3 = #{extfield3,jdbcType=VARCHAR},
+      EXTFIELD4 = #{extfield4,jdbcType=VARCHAR},
+      EXTFIELD5 = #{extfield5,jdbcType=VARCHAR}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+</mapper>

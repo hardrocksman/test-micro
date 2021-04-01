@@ -1,0 +1,5 @@
+ext {
+    lombokVersion = "1.16.20"
+    springCloudAlibabaVersion = "2.2.0.RELEASE"
+    shardingjdbcVersion = "4.1.1"
+}

@@ -1,0 +1,105 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+[compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+buildscript {
+    ext {
+        //定义一个变量，统一规定springboot的版本
+        springBootVersion = '2.3.0.RELEASE'
+        springCloudVersion = 'Hoxton.SR9'
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            name "aliyunmaven"
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url "https://repo.spring.io/libs-milestone"
+        }
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {//用来打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+allprojects{
+    repositories {
+        mavenLocal()
+        maven {
+            name "aliyunmaven"
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url "https://repo.spring.io/libs-milestone"
+        }
+        jcenter()
+        mavenCentral()
+    }
+}
+
+//plugins {
+//    id 'org.springframework.boot' version '2.3.0.RELEASE'
+//    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//    id 'java'
+//}
+
+subprojects{
+    group = 'com.zhl.test'
+    version = '0.0.1'
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    //spring boot 插件
+    apply plugin: 'org.springframework.boot'
+    //A Gradle plugin that provides Maven-like dependency management functionality
+    apply plugin: 'io.spring.dependency-management'
+
+    apply from: "${rootDir}/gradle/version.gradle"
+
+    dependencies {
+//        implementation 'org.springframework.boot:spring-boot-starter-web'
+//        implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+//        implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+//        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+//        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+//        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+//        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+//        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+//            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//        }
+
+        compileOnly('org.projectlombok:lombok')
+        annotationProcessor('org.projectlombok:lombok')
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+        }
+    }
+
+//    test {
+//        useJUnitPlatform()
+//    }
+}
+
+
+
+
+
+
