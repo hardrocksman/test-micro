@@ -14,4 +14,6 @@ public interface PaymentdetailDao {
     int updateByPrimaryKeySelective(Paymentdetail record);
 
     int updateByPrimaryKey(Paymentdetail record);
+
+    Paymentdetail getPayDetail(Paymentdetail record);
 }

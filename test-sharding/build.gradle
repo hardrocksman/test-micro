@@ -9,13 +9,15 @@ configurations {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.18'
     implementation 'junit:junit:4.12'
 
 //    compile(project(":user-provider-client"))
     implementation ("org.springframework.boot:spring-boot-starter-web")
+    implementation ("org.springframework.boot:spring-boot-starter-jdbc")
 
-    compile 'org.apache.shardingsphere:sharding-jdbc-spring-boot-starter:4.1.1'
-    compile 'org.apache.shardingsphere:sharding-core-common:4.1.1'
+    compile 'org.apache.shardingsphere:sharding-jdbc-spring-boot-starter:4.1.0'
+//    compile 'org.apache.shardingsphere:sharding-core-common:4.1.1'
 
     compile 'com.baomidou:mybatis-plus-boot-starter:2.3'
 

@@ -343,4 +343,11 @@
       EXTFIELD5 = #{extfield5,jdbcType=VARCHAR}
     where URID = #{urid,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="getPayDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select d.*,p.notecode
+    from T_SE_PAYMENTDETAIL_HF d left join t_se_payments_hf p on p.urid=d.paymentid
+    where d.paymentid=#{urid,jdbcType=VARCHAR}
+  </select>
 </mapper>

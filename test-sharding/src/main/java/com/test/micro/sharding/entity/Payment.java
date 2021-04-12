@@ -559,5 +559,9 @@ public class Payment implements Serializable {
      */
     private String cashflowitemid;
 
+
+    private String merchantName;
+
+
     private static final long serialVersionUID = 1L;
 }

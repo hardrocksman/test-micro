@@ -1329,4 +1329,34 @@
       CASHFLOWITEMID = #{cashflowitemid,jdbcType=VARCHAR}
     where URID = #{urid,jdbcType=VARCHAR}
   </update>
+
+
+
+  <select id="getPayments" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_SE_PAYMENTS_HF
+    where urid in
+    <foreach item="urid" index="index" collection="urids"
+             open="(" separator="," close=")">
+      #{urid, jdbcType=VARCHAR}
+    </foreach>
+  </select>
+
+
+
+  <select id="getPaymentsBetween" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_SE_PAYMENTS_HF
+    <![CDATA[ where urid >= #{startUrid} and urid <= #{endUrid} ]]>
+  </select>
+
+
+  <select id="selectWithMerchant" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select p.*,m.merchantname
+    from T_SE_PAYMENTS_HF p
+    left join t_se_merchant_hf m on m.merchantno=p.SRCOUTSYSTEMID
+    where p.URID = #{urid,jdbcType=VARCHAR}
+  </select>
 </mapper>

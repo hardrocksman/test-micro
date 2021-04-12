@@ -147,5 +147,8 @@ public class Paymentdetail implements Serializable {
      */
     private String extfield5;
 
+
+    private String notecode;
+
     private static final long serialVersionUID = 1L;
 }

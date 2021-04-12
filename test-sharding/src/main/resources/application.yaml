@@ -7,14 +7,33 @@ spring:
     props:
       sql:
         show: true
+      executor:
+        #工作线程数量，默认值: CPU核数
+        size: 3
+      max:
+        connections:
+          size:
+            per:
+              # 每个查询可以打开的最大连接数量,默认为1
+              query: 4
+      check:
+        table:
+          metadata:
+            #是否在启动时检查分表元数据一致性，默认值: false
+            enabled: false
     datasource:
       names: ds0
       ds0:
         type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://10.60.46.190:3306/test_sharding?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+        driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+        jdbcUrl: jdbc:p6spy:mysql://10.60.48.183:3307/settlement?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: root
+#        jdbcUrl: jdbc:p6spy:oracle:thin:@10.60.44.70:1521:orcl
+#        username: msats_hf
+#        password: msats_hf
+#        username: settlement_hf
+#        password: settlement_hf
         auto-commit: true
         minimum-idle: 10
         maximum-pool-size: 30
@@ -28,20 +47,40 @@ spring:
     sharding:
       tables:
         T_SE_PAYMENTS_HF:
-          actual-data-nodes: ds0.T_SE_PAYMENTS_HF_2021_1,ds0.T_SE_PAYMENTS_HF_2021_2,ds0.T_SE_PAYMENTS_HF_2021_3
+#          actual-data-nodes: alipay.toc_alipay_origin_$->{2020..2021}0$->{1..9}, alipay.toc_alipay_origin_$->{2020..2021}$->{10..12}
+          actual-data-nodes: ds0.T_SE_PAYMENTS_HF_20210$->{1..9},ds0.T_SE_PAYMENTS_HF_2021$->{10..12}
           table-strategy:
             standard:
               sharding-column: urid
               precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayPreciseShardingAlgorithm
-        t_se_paymentdetail_hf:
-          actual-data-nodes: ds0.t_se_paymentdetail_hf_2021_$->{1..3}
+              range-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayRangeShardingAlgorithm
+        T_SE_PAYMENTDETAIL_HF:
+          actual-data-nodes: ds0.T_SE_PAYMENTDETAIL_HF_20210$->{1..9},ds0.T_SE_PAYMENTDETAIL_HF_2021$->{10..12}
           table-strategy:
             standard:
               sharding-column: paymentid
               precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayPreciseShardingAlgorithm
-      binding-tables: t_se_payments_hf,t_se_paymentdetail_hf
+      binding-tables:
+        - T_SE_PAYMENTS_HF,T_SE_PAYMENTDETAIL_HF
       broadcast-tables: T_SE_MERCHANT_HF
       default-data-source-name: ds0
-
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://10.60.48.183:3307/settlement?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: test-HikariPool
+      maximum-pool-size: 10
+      connection-timeout: 6000
+      minimum-idle: 5
+      idle-timeout: 500000
+      max-lifetime: 540000
+      connection-test-query: select 1
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
+
+id-generator:
+  data-center-id: 1
+  data-machine-id: 0

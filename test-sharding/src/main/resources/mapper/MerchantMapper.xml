@@ -31,12 +31,12 @@
     where URID = #{urid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Merchant" useGeneratedKeys="true">
-    insert into T_SE_MERCHANT_HF (TENANTID, TENANTCODE, MERCHANTNO, 
+    insert into T_SE_MERCHANT_HF (URID, TENANTID, TENANTCODE, MERCHANTNO,
       MERCHANTNAME, MERCHANTSECRET, ISACTIVE, 
       ROWVERSION, DESCRIPTION, CREATEDBY, 
       CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON
       )
-    values (#{tenantid,jdbcType=DECIMAL}, #{tenantcode,jdbcType=VARCHAR}, #{merchantno,jdbcType=VARCHAR}, 
+    values (#{urid,jdbcType=VARCHAR}, #{tenantid,jdbcType=DECIMAL}, #{tenantcode,jdbcType=VARCHAR}, #{merchantno,jdbcType=VARCHAR},
       #{merchantname,jdbcType=VARCHAR}, #{merchantsecret,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, 
       #{rowversion,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{createdby,jdbcType=VARCHAR}, 
       #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, #{lastmodifiedon,jdbcType=TIMESTAMP}
