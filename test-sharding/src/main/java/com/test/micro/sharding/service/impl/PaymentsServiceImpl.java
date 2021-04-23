@@ -8,10 +8,15 @@ import com.test.micro.sharding.entity.Payment;
 import com.test.micro.sharding.entity.Paymentdetail;
 import com.test.micro.sharding.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+//import org.apache.shardingsphere.shardingjdbc.jdbc.core.datasource.ShardingDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.DataSource;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -26,6 +31,8 @@ public class PaymentsServiceImpl implements PaymentService {
     PaymentdetailDao paymentdetailDao;
     @Autowired
     MerchantDao merchantDao;
+    @Autowired
+    DataSource dataSource;
 
     @Override
     public void insertMerchant(String urid) {
@@ -123,5 +130,77 @@ public class PaymentsServiceImpl implements PaymentService {
         Paymentdetail record = new Paymentdetail();
         record.setUrid(urid);
         return paymentdetailDao.getPayDetail(record);
+    }
+
+    @Override
+    public List<Payment> getPayments() {
+        try {
+//            String sql = "select * from (select '1' moneyway, splitmergeflag, checkcode, finvouchercode, abstracts, ouramount, ourbankaccountnumber, ischeck, orgid, oppbankaccountid, oppbankaccountname, oppbankaccountnumber, checkbatchno, urid, notecode, applyorgid, deptid, paydate, paytypeid, settlementmodeid, dealtype, directpayway, directchannelcode, directchannelcmdcode, directinterbankcode, memo, ourorgid, ourbankid, ourbanklocations, ourbankaccountid, ourbankaccountname, ourbankareaid, ourbankareacode, ourbankareaname, ourcountrycode, ourcurrencyid, ourdirectcurcode, ourexchangerate, ourlocalcurrencyamount, oppobjecttype, opporgid, oppcode, oppname, oppcounterpartycategoryid, oppcounterpartyid, oppbankid, oppbanklocationid, oppbanklocations, oppbankareaid, oppbankareacode, oppbankareaname, oppcountrycode, oppcurrencyid, oppdirectcurcode, oppamount, oppexchangerate, opplocalcurrencyamount, oppcellphone, oppprivateflag, oppcardtype, oppcerttype, oppcertnumber, oppemailaddress, cnaps, issameregion, issamebank, isurgent, purpose, purposeid, directchannelpurpose, paystate, paypersonid, paysenddate, paymadedate, payinfocode, payinfo, payreqbatchno, payreqbatchsequenceno, payreqserialno, refunddate, cancelstate, genrelatedtransstate, recordsource, recordsourceid, srcoutsystemid, srcbatchno, srcserialno, srcnotecode, splitno, passelno, bankserialnumber, createdby, createdon, lastmodifiedby, lastmodifiedon, rowversion, description, TERMINATESTATE, tenantid\n" +
+//                    "from T_SE_PAYMENTS_HF\n" +
+//                    "where URID<? " +
+//                    "AND URID>=? " +
+//                    "AND TENANTID=? " +
+//                    "AND PAYMADEDATE>=STR_TO_DATE(?,'%Y-%m-%d') " +
+//                    "AND PAYMADEDATE<=STR_TO_DATE(?,'%Y-%m-%d %H:%i:%s') " +
+//                    "AND OURBANKACCOUNTID=? " +
+//                    "AND  1=1\n" +
+//                    "and PAYSTATE in ('2', '3')\n" +
+//                    "AND ischeck = '0'\n" +
+//                    "AND CANCELSTATE = '1'\n" +
+//                    "AND splitmergeflag = '0') t";
+
+
+//            String sql = "SELECT V_.* FROM (select t.* , amount output " +
+//                    "from T_BA_BANKDAYBOOKS_HF t  " +
+//                    "WHERE t.TENANTID=10001 " +
+//                    "AND t.ACCOUNTID='1b3653945db34bf0bb76d9c3a63332a4' " +
+//                    "AND t.TRADEDATE>=STR_TO_DATE('2021-04-01','%Y-%m-%d') " +
+//                    "AND t.TRADEDATE<=STR_TO_DATE('2021-04-30 23:59:59','%Y-%m-%d %H:%i:%s') " +
+//                    "AND  ischeck='0' and t.MONEYWAY ='1') V_ limit 20 offset 0";
+
+            String sql = "SELECT V_.* FROM (SELECT\n" +
+                    "\tt.*,\n" +
+                    "\tDAYB.URID BANKFLOWID,\n" +
+                    "\tBT.BANKSERIALNUMBER BANKHISTORYID,\n" +
+                    "\tnvl( pay.urid, rec.urid ) tranurid\n" +
+                    "FROM\n" +
+                    "\tT_BA_ELERECEIPTS_HF T\n" +
+                    "\tLEFT JOIN T_BA_ELERECEIPTRELATIONS ER ON T.URID = ER.ELERECEIPTID\n" +
+                    "\tLEFT JOIN T_BA_BANKDAYBOOKS DAYB ON ER.BANKDAYBOOKID = DAYB.URID\n" +
+                    "\tLEFT JOIN T_BA_BANKTRANSACTIONS BT ON ER.BANKTRANSID = BT.URID\n" +
+                    "\tLEFT JOIN T_SE_PAYMENTS pay ON pay.notecode = t.ordernumber \n" +
+                    " WHERE (T.ORGID in(6000001)) AND T.TRANDATE>='2021-04-01' AND T.TRANDATE<='2021-04-22 23:59:59' ORDER BY T.TRANDATE DESC) V_ limit 20 offset 0";
+
+//            String sql = "select  * from T_SE_PAYMENTS_HF where urid<=? and urid >= ?";
+
+//            MySqlStatementParser parser = new MySqlStatementParser(sql);
+//            com.alibaba.druid.sql.ast.SQLStatement statement = parser.parseStatement();
+//            MySqlAlterTableStatement alter = (MySqlAlterTableStatement)statement;
+//            SQLExprTableSource source = alter.getTableSource();
+//            String tableName = source.toString();
+
+//            SQLStatement tree = new SQLParserEngine("MySQL").parse(sql, true);
+
+
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setFetchSize(1000);
+//            pstmt.setString(1, "585296392986038271");
+//            pstmt.setString(2, "574787144883634176");
+//            pstmt.setInt(3, 10001);
+//            pstmt.setString(4, "2021-04-01");
+//            pstmt.setString(5, "2021-04-30 23:59:59");
+//            pstmt.setString(6, "1b3653945db34bf0bb76d9c3a63332a4");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                log.info(rs.getString(1));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

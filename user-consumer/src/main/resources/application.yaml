@@ -10,4 +10,4 @@ spring:
     sentinel:
       transport:
         port: 9001
-        dashboard: localhost:8080
+        dashboard: localhost:8089

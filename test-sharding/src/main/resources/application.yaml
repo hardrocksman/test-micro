@@ -47,7 +47,6 @@ spring:
     sharding:
       tables:
         T_SE_PAYMENTS_HF:
-#          actual-data-nodes: alipay.toc_alipay_origin_$->{2020..2021}0$->{1..9}, alipay.toc_alipay_origin_$->{2020..2021}$->{10..12}
           actual-data-nodes: ds0.T_SE_PAYMENTS_HF_20210$->{1..9},ds0.T_SE_PAYMENTS_HF_2021$->{10..12}
           table-strategy:
             standard:
@@ -60,24 +59,38 @@ spring:
             standard:
               sharding-column: paymentid
               precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.PayPreciseShardingAlgorithm
+        T_BA_BANKDAYBOOKS_HF:
+          actual-data-nodes: ds0.T_BA_BANKDAYBOOKS_HF_20210$->{1..9},ds0.T_BA_BANKDAYBOOKS_HF_2021$->{10..12}
+          table-strategy:
+            standard:
+              sharding-column: tradedate
+              precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.DayBookPreciseShardingAlgorithm
+              range-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.DayBookRangeShardingAlgorithm
+        T_BA_ELERECEIPTS_HF:
+          actual-data-nodes: ds0.T_BA_ELERECEIPTS_HF_20210$->{1..9},ds0.T_BA_ELERECEIPTS_HF_2021$->{10..12}
+          table-strategy:
+            standard:
+              sharding-column: trandate
+              precise-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.DayBookPreciseShardingAlgorithm
+              range-algorithm-class-name: com.test.micro.sharding.shardingAlgorithm.DayBookRangeShardingAlgorithm
       binding-tables:
         - T_SE_PAYMENTS_HF,T_SE_PAYMENTDETAIL_HF
       broadcast-tables: T_SE_MERCHANT_HF
-      default-data-source-name: ds0
-  datasource:
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://10.60.48.183:3307/settlement?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: root
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      pool-name: test-HikariPool
-      maximum-pool-size: 10
-      connection-timeout: 6000
-      minimum-idle: 5
-      idle-timeout: 500000
-      max-lifetime: 540000
-      connection-test-query: select 1
+#      default-data-source-name: ds0
+#  datasource:
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:mysql://10.60.48.183:3307/settlement?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+#    username: root
+#    password: root
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      pool-name: test-HikariPool
+#      maximum-pool-size: 10
+#      connection-timeout: 6000
+#      minimum-idle: 5
+#      idle-timeout: 500000
+#      max-lifetime: 540000
+#      connection-test-query: select 1
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
 

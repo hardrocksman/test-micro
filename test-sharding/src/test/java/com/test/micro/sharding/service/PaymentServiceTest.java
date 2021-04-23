@@ -65,4 +65,9 @@ public class PaymentServiceTest {
         Paymentdetail p = paymentService.getDetail("577190128661954560");
         System.out.println("商户号：" + p.getNotecode());
     }
+
+    @Test
+    public void testGetPayments() {
+        paymentService.getPayments();
+    }
 }

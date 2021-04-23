@@ -1359,4 +1359,8 @@
     left join t_se_merchant_hf m on m.merchantno=p.SRCOUTSYSTEMID
     where p.URID = #{urid,jdbcType=VARCHAR}
   </select>
+
+  <select id="getPaymentsWith" resultMap="BaseResultMap">
+    select u.* from (select * from T_SE_PAYMENTS_HF) u
+  </select>
 </mapper>

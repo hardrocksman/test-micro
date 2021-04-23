@@ -19,4 +19,6 @@ public interface PaymentService {
     Payment getPaymentWithMerchant(String urid);
 
     Paymentdetail getDetail(String urid);
+
+    List<Payment> getPayments();
 }

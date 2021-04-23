@@ -24,4 +24,6 @@ public interface PaymentDao {
     List<Payment> getPaymentsBetween(@Param("startUrid") String startUrid, @Param("endUrid") String endUrid);
 
     Payment selectWithMerchant(@Param("urid") String urid);
+
+    List<Payment> getPaymentsWith();
 }
