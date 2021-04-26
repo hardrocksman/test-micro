@@ -7,19 +7,19 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-#    sentinel:
-#      transport:
-#        port: 9003
-#        dashboard: localhost:8080
-#      # 取消Sentinel控制台懒加载
-#      eager: true
-#      app:
-#        type: 1
-#      scg:
-#        fallback:
-#          mode: response
-#          response-status: 455
-#          response-body: "The system is busy, please try again later!"
+    sentinel:
+      transport:
+        port: 9003
+        dashboard: localhost:8089
+      # 取消Sentinel控制台懒加载
+      eager: true
+      app:
+        type: 1
+      scg:
+        fallback:
+          mode: response
+          response-status: 455
+          response-body: "The system is busy, please try again later!"
 
     gateway:
       discovery:
