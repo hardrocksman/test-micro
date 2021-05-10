@@ -5,4 +5,5 @@ include 'user-provider-client'
 include 'user-consumer'
 include 'test-sharding'
 include 'test-rocketmq'
+include 'test-prometheus'
 
