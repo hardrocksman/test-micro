@@ -6,6 +6,7 @@ import com.test.micro.sharding.dao.PaymentdetailDao;
 import com.test.micro.sharding.entity.Merchant;
 import com.test.micro.sharding.entity.Payment;
 import com.test.micro.sharding.entity.Paymentdetail;
+import com.test.micro.sharding.service.IdGenerator;
 import com.test.micro.sharding.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 //import org.apache.shardingsphere.shardingjdbc.jdbc.core.datasource.ShardingDataSource;
@@ -17,6 +18,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -33,6 +35,9 @@ public class PaymentsServiceImpl implements PaymentService {
     MerchantDao merchantDao;
     @Autowired
     DataSource dataSource;
+
+    @Autowired
+    IdGenerator idGenerator;
 
     @Override
     public void insertMerchant(String urid) {
@@ -52,6 +57,46 @@ public class PaymentsServiceImpl implements PaymentService {
         merchant.setMerchantsecret("122322");
 
         merchantDao.insert(merchant);
+    }
+
+    @Override
+    public int batchInsertMerchant() {
+        Merchant merchant = new Merchant();
+        merchant.setUrid(idGenerator.nextId().toString());
+        merchant.setTenantid(new BigDecimal("10001"));
+        merchant.setTenantcode("Ats111");
+        merchant.setMerchantno("2134567890");
+        merchant.setCreatedon(new Date());
+        merchant.setCreatedby("TEST");
+        merchant.setLastmodifiedon(new Date());
+        merchant.setLastmodifiedby("TEST");
+        merchant.setRowversion((short) 1);
+        merchant.setDescription("TEST-ABC");
+        merchant.setIsactive("1");
+        merchant.setMerchantname("TEST-ABC");
+        merchant.setMerchantsecret("122322");
+
+        Merchant merchant1 = new Merchant();
+        merchant1.setUrid(idGenerator.nextId().toString());
+        merchant1.setTenantid(new BigDecimal("10001"));
+        merchant1.setTenantcode("Ats22");
+        merchant1.setMerchantno("12345w67890");
+        merchant1.setCreatedon(new Date());
+        merchant1.setCreatedby("TEST");
+        merchant1.setLastmodifiedon(new Date());
+        merchant1.setLastmodifiedby("TEST");
+        merchant1.setRowversion((short) 1);
+        merchant1.setDescription("TEST-ABC");
+        merchant1.setIsactive("1");
+        merchant1.setMerchantname("TEST-ABC");
+        merchant1.setMerchantsecret("122322");
+
+        List<Merchant> merchantList = new ArrayList<Merchant>();
+        merchantList.add(merchant);
+        merchantList.add(merchant1);
+
+
+        return merchantDao.batchInsert(merchantList);
     }
 
     @Override
@@ -182,9 +227,9 @@ public class PaymentsServiceImpl implements PaymentService {
 //            SQLStatement tree = new SQLParserEngine("MySQL").parse(sql, true);
 
 
-            Connection connection = dataSource.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setFetchSize(1000);
+//            Connection connection = dataSource.getConnection();
+//            PreparedStatement pstmt = connection.prepareStatement(sql);
+//            pstmt.setFetchSize(1000);
 //            pstmt.setString(1, "585296392986038271");
 //            pstmt.setString(2, "574787144883634176");
 //            pstmt.setInt(3, 10001);
@@ -192,15 +237,70 @@ public class PaymentsServiceImpl implements PaymentService {
 //            pstmt.setString(5, "2021-04-30 23:59:59");
 //            pstmt.setString(6, "1b3653945db34bf0bb76d9c3a63332a4");
 
-            ResultSet rs = pstmt.executeQuery();
+//            ResultSet rs = pstmt.executeQuery();
 
-            while (rs.next()) {
-                log.info(rs.getString(1));
-            }
+//            while (rs.next()) {
+//                log.info(rs.getString(1));
+//            }
         }catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
+    }
+
+    @Override
+    public int batchInsertPayment() {
+        Payment p1 = buildPayment();
+        Payment p2 = buildPayment();
+
+        List<Payment> payments = new ArrayList<>();
+        payments.add(p1);
+        payments.add(p2);
+
+        return paymentDao.insertBatch(payments);
+    }
+
+
+    private Payment buildPayment() {
+        Payment payment = new Payment();
+        payment.setUrid(idGenerator.nextId().toString());
+        payment.setOrgid("2222");
+        payment.setNotecode(UUID.randomUUID().toString());
+        payment.setApplyorgid("2222");
+        payment.setOurorgid("2222");
+        payment.setOuramount(23132.0);
+        payment.setOurexchangerate(1.0);
+        payment.setOurlocalcurrencyamount(222.0);
+        payment.setOppobjecttype("2");
+        payment.setOppamount(23132.0);
+        payment.setOppexchangerate(1.0);
+        payment.setOpplocalcurrencyamount(222.0);
+        payment.setOppobjecttype("2");
+        payment.setIssamebank("1");
+        payment.setIssameregion("1");
+        payment.setIsurgent("2");
+        payment.setPaystate("1");
+        payment.setCancelstate("1");
+        payment.setGenrelatedtransstate("1");
+        payment.setRecordsource("4");
+        payment.setCreatedby("TEST");
+        payment.setCreatedon(new Date());
+
+        payment.setLastmodifiedby("TEST");
+        payment.setLastmodifiedon(new Date());
+        payment.setRowversion((short) 1);
+        payment.setIscheck("0");
+        payment.setSplitedamount(0.0);
+        payment.setSplitmergeflag("0");
+        payment.setTenantid(new BigDecimal("10001"));
+        payment.setTerminatestate("0");
+        payment.setOurpaidamount(0.0);
+        payment.setCosts(0.0);
+        payment.setOppprivateflag("0");
+        payment.setIspayfailsendmsg("0");
+        payment.setSrcoutsystemid("1234567890");
+
+        return payment;
     }
 }

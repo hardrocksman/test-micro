@@ -1,0 +1,24 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: test-springcloud-rabbitmq
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment: #配置rabbimq连接环境
+            spring:
+              rabbitmq:
+                host: 10.60.48.183
+                username: root
+                password: root
+                virtual-host: /test
+      bindings:
+        output:
+          destination: Publisher   #exchange名称，交换模式默认是topic
+          content-type: application/json
+        input:
+          destination: Subscribe
+          content-type: application/json

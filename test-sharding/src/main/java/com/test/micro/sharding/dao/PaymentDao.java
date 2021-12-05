@@ -11,6 +11,8 @@ public interface PaymentDao {
 
     int insert(Payment record);
 
+    int insertBatch(@Param("payments")List<Payment> records);
+
     int insertSelective(Payment record);
 
     Payment selectByPrimaryKey(String urid);

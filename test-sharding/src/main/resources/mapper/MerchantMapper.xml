@@ -42,6 +42,23 @@
       #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, #{lastmodifiedon,jdbcType=TIMESTAMP}
       )
   </insert>
+
+
+  <insert id="batchInsert" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Merchant" useGeneratedKeys="true">
+    insert into T_SE_MERCHANT_HF (URID, TENANTID, TENANTCODE, MERCHANTNO,
+                                  MERCHANTNAME, MERCHANTSECRET, ISACTIVE,
+                                  ROWVERSION, DESCRIPTION, CREATEBY,
+                                  CREATEON, LASTMODIFIEDBY, LASTMODIFIEDON
+    )values
+    <foreach collection="merchantList" item="item" index = "index" separator=",">
+            (#{item.urid,jdbcType=VARCHAR}, #{item.tenantid,jdbcType=DECIMAL}, #{item.tenantcode,jdbcType=VARCHAR}, #{item.merchantno,jdbcType=VARCHAR},
+            #{item.merchantname,jdbcType=VARCHAR}, #{item.merchantsecret,jdbcType=VARCHAR}, #{item.isactive,jdbcType=CHAR},
+            #{item.rowversion,jdbcType=DECIMAL}, #{item.description,jdbcType=VARCHAR}, #{item.createdby,jdbcType=VARCHAR},
+            #{item.createdon,jdbcType=TIMESTAMP}, #{item.lastmodifiedby,jdbcType=VARCHAR}, #{item.lastmodifiedon,jdbcType=TIMESTAMP}
+           )
+    </foreach>
+  </insert>
+
   <insert id="insertSelective" keyColumn="URID" keyProperty="urid" parameterType="com.test.micro.sharding.entity.Merchant" useGeneratedKeys="true">
     insert into T_SE_MERCHANT_HF
     <trim prefix="(" suffix=")" suffixOverrides=",">

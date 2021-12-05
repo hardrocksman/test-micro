@@ -66,6 +66,8 @@ subprojects{
     //A Gradle plugin that provides Maven-like dependency management functionality
     apply plugin: 'io.spring.dependency-management'
 
+//    apply plugin: 'me.champeau.gradle.jmh'
+
     apply from: "${rootDir}/gradle/version.gradle"
 
     dependencies {

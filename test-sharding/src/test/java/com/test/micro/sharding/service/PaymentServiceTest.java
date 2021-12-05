@@ -30,12 +30,29 @@ public class PaymentServiceTest {
     }
 
     /**
+     * 测试广播表插入
+     */
+    @Test
+    public void testBatchInsertMerchant() {
+        paymentService.batchInsertMerchant();
+    }
+
+    /**
      * 测试主键插入
      */
     @Test
     public void testInsertPayment() {
         Long id = idGenerator.nextId();
         paymentService.insertPayment(id.toString());
+    }
+
+    /**
+     * 测试主键插入
+     */
+    @Test
+    public void testBatchInsertPayment() {
+        Long id = idGenerator.nextId();
+        paymentService.batchInsertPayment();
     }
 
     /**

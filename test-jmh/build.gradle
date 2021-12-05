@@ -1,0 +1,37 @@
+
+// 'me.champeau.gradle.jmh' version '0.3.1'
+plugins {
+    id "me.champeau.gradle.jmh" version "0.5.0" apply false
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'me.champeau.gradle.jmh'
+
+archivesBaseName = "test-jmh"
+
+configurations {
+//    compile.exclude module: 'spring-boot-starter-tomcat'
+//    compile.exclude module: 'slf4j-log4j12'
+}
+
+dependencies {
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//
+//    implementation 'com.alibaba.cloud:spring-cloud-starter-stream-rocketmq'
+//
+//    implementation 'org.projectlombok:lombok:1.18.18'
+//    implementation 'junit:junit:4.12'
+//
+//    implementation ("org.springframework.boot:spring-boot-starter-web")
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    implementation("org.openjdk.jmh:jmh-core:1.22")
+    implementation("org.openjdk.jmh:jmh-generator-annprocess:1.22")
+}
+
+test {
+    useJUnitPlatform()
+}

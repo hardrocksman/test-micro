@@ -9,6 +9,7 @@ public interface PaymentService {
 
     void insertMerchant(String urid);
 
+    int batchInsertMerchant();
 
     void insertPayment(String urid);
 
@@ -21,4 +22,6 @@ public interface PaymentService {
     Paymentdetail getDetail(String urid);
 
     List<Payment> getPayments();
+
+    int batchInsertPayment();
 }
